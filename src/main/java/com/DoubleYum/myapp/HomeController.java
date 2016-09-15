@@ -23,72 +23,92 @@ import com.mashape.unirest.http.Unirest;
  */
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		model.addAttribute("serverTime", formattedDate);
+
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "homepage", method = RequestMethod.GET)
 	public String getWeather(HttpServletRequest request, Model model) {
 		try {
-		
-			HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1")
-					.header("X-Mashape-Key", "zDMVRFkyfVmshyOwXP2GcxJx0cOZp13ZdT9jsnY2JdFip6csGz")
-					.header("Accept", "application/json")
-					.asJson();
-			
-			JSONArray updatedResponse = response.getBody().getObject().getJSONArray("recipes");
+
+			HttpResponse<JsonNode> response = Unirest
+					.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1")
+					.header("X-Mashape-Key",
+							"zDMVRFkyfVmshyOwXP2GcxJx0cOZp13ZdT9jsnY2JdFip6csGz")
+					.header("Accept", "application/json").asJson();
+
+			JSONArray updatedResponse = response.getBody().getObject()
+					.getJSONArray("recipes");
 			Object foodImage = updatedResponse.getJSONObject(0).get("image");
 			Object foodTitle = updatedResponse.getJSONObject(0).get("title");
-			Object instructions = updatedResponse.getJSONObject(0).get("instructions");
-			Object sourceUrl = updatedResponse.getJSONObject(0).get("sourceUrl");
+			Object instructions = updatedResponse.getJSONObject(0).get(
+					"instructions");
+			Object sourceUrl = updatedResponse.getJSONObject(0)
+					.get("sourceUrl");
 			model.addAttribute("foodTitle", foodTitle);
-		model.addAttribute("foodImage", foodImage);
-		model.addAttribute("instructions", instructions);
-		model.addAttribute("sourceUrl", sourceUrl);
+			model.addAttribute("foodImage", foodImage);
+			model.addAttribute("instructions", instructions);
+			model.addAttribute("sourceUrl", sourceUrl);
 		} catch (Exception e) {
 			return "errorpage";
 		}
 		return "HomePage";
 
 	}
+
 	@RequestMapping(value = "recipeDetails", method = RequestMethod.GET)
 	public String getUserPreference(HttpServletRequest request, Model model) {
 		try {
 			String userinput = request.getParameter("recipeinput");
-			
-			if (userinput != null || !userinput.isEmpty()){
-				
-			}
-				HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ userinput)
-						.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-						.header("Accept", "application/json")
-						.asJson();
-	
-		model.addAttribute("test", response.getBody());
-		
+			String chicken = "chicken";
 
-	}
-			catch (Exception e) {
+			// if (userinput != null || !userinput.isEmpty()){
+
+			// }
+			HttpResponse<JsonNode> response = Unirest
+					.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="
+							+ chicken)
+					.header("X-Mashape-Key",
+							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+					.header("Accept", "application/json").asJson();
+			JSONArray updatedResponse = response.getBody().getObject()
+					.getJSONArray("results");
+			// Object foodImage = updatedResponse.getJSONObject(0).get("image");
+			String results = "";
+			String picresults = "";
+			String urlresults = "";
+			for (int i = 0; i < updatedResponse.length(); i++) {
+				results += "<br>" + updatedResponse.getJSONObject(i)
+				.get("title");
+				picresults += "<br>" + updatedResponse.getJSONObject(i).get("image");
+				//updatedResponse.getJSONObject(0).get("imageUrls");
+				model.addAttribute("pic", picresults);
+				model.addAttribute("title", results);
+			}
+
+		} catch (Exception e) {
 			return "errorpage";
 		}
 		return "HomePage";
 
-		}
-	
+	}
+
 }

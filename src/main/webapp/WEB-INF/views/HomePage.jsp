@@ -99,6 +99,7 @@
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
-
+<p>${title}</p>
+<img src= ${pic}>
 </body>
 </html>
