@@ -59,11 +59,7 @@
    	
       <form action="recipe" method="get">
       <ul class="nav navbar-nav"> 
-		<h3> Select By <select name="selection"></h3>
-			<option>Cuisine</option>
-			<option>Ingredient</option>
-			<option>Recipe Name</option>
-			</select><input type="text" name="recipeinput"></center></h3> 
+			<h3>Search<input type="text" name="recipeinput"></center></h3> 
 			<h3><input type="submit" value="Search!"style="visibility: hidden;"/></h3>
       </ul>
       </div>
