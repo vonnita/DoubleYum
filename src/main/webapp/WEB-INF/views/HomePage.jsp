@@ -84,7 +84,8 @@
     <div class="col-sm-8 text-left">
       <h1>Recipe of the Day</h1>
       <h3>${foodTitle}</h3>
-      <a href = ""><button  onclick="window.location='errorpage.jsp'" ><img src=${foodImage} ></button>  </a>
+      <a href = ${sourceUrl}><button  type ="button" ><img src=${foodImage} ></button>  </a>
+
       <hr>
     </div>
     <div class="col-sm-2 sidenav">

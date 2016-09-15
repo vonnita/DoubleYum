@@ -55,41 +55,16 @@ public class HomeController {
 			JSONArray updatedResponse = response.getBody().getObject().getJSONArray("recipes");
 			Object foodImage = updatedResponse.getJSONObject(0).get("image");
 			Object foodTitle = updatedResponse.getJSONObject(0).get("title");
+			Object instructions = updatedResponse.getJSONObject(0).get("instructions");
+			Object sourceUrl = updatedResponse.getJSONObject(0).get("sourceUrl");
 			model.addAttribute("foodTitle", foodTitle);
 		model.addAttribute("foodImage", foodImage);
-			
+		model.addAttribute("instructions", instructions);
+		model.addAttribute("sourceUrl", sourceUrl);
 		} catch (Exception e) {
 			return "errorpage";
 		}
 		return "HomePage";
-
-	}
-	@RequestMapping(value = "randomRecipe", method = RequestMethod.GET)
-	public String getSelection(HttpServletRequest request, Model model) {
-		try {
-		//click on picture or title
-			//save title in that variable 
-			//grab picture, instructions, title, cooktime, thats associated with it
-			HttpResponse<JsonNode> response = Unirest.post("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/")
-					.header("X-Mashape-Key", "zDMVRFkyfVmshyOwXP2GcxJx0cOZp13ZdT9jsnY2JdFip6csGz")
-					.header("Accept", "application/json")
-					.field("title", "Skinny Gluten Free Hamburger Buns (like One Buns!)")
-					.asJson();
-			
-			JSONArray updatedResponse = response.getBody().getObject().getJSONArray("recipes");
-			Object foodImage = updatedResponse.getJSONObject(0).get("image");
-			Object foodTitle = updatedResponse.getJSONObject(0).get("title");
-			Object instructions = updatedResponse.getJSONObject(0).get("instructions");
-			Object cookTime = updatedResponse.getJSONObject(0).get("readyInMinutes");
-			model.addAttribute("foodTitle", foodTitle);
-		model.addAttribute("foodImage", foodImage);
-		model.addAttribute("instructions", instructions);
-		model.addAttribute("cookTime", cookTime);
-			
-		} catch (Exception e) {
-			return "errorpage";
-		}
-		return "recipeDetails";
 
 	}
 	
