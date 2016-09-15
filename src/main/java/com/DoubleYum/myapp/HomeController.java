@@ -67,5 +67,28 @@ public class HomeController {
 		return "HomePage";
 
 	}
+	@RequestMapping(value = "recipeDetails", method = RequestMethod.GET)
+	public String getUserPreference(HttpServletRequest request, Model model) {
+		try {
+			String userinput = request.getParameter("recipeinput");
+			
+			if (userinput != null || !userinput.isEmpty()){
+				
+			}
+				HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ userinput)
+						.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+						.header("Accept", "application/json")
+						.asJson();
+	
+		model.addAttribute("test", response.getBody());
+		
+
+	}
+			catch (Exception e) {
+			return "errorpage";
+		}
+		return "HomePage";
+
+		}
 	
 }
