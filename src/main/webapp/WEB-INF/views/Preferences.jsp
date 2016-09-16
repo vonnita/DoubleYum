@@ -17,16 +17,20 @@ Password: <input type="text" name="pswd"><br>
 Email: <input type="text" name="email"><br>
 		 <br> 
 		<h3> Food Preferences:</h3>
-
+		
 		<h5>Allergies</h5>
-		<input type="checkbox" name="milk" value="on">Milk <input
+		<input type="checkbox" name="dairy" value="on">Dairy <input
 			type="checkbox" name="eggs" value="on">Eggs <input
-			type="checkbox" name="fish" value="on">Fish <input
+			type="checkbox" name="gluten" value="on">Gluten <input
+			type="checkbox" name="peanut" value="on">Peanut <input
+			type="checkbox" name="tree nut" value="on">Tree Nuts <input
+			type="checkbox" name="seasame" value="on">Sesame <input
+			type="checkbox" name="seafood" value="on">Seafood <input
 			type="checkbox" name="shellfish" value="on">Shellfish <input
-			type="checkbox" name="nuts" value="on">Nuts <input
-			type="checkbox" name="soybeans" value="on">Soybeans <input
-			type="checkbox" name="citrus" value="on">Citrus
-
+			type="checkbox" name="soy" value="on">Soy <input
+			type="checkbox" name="sulfite"value="on">Sulfite <input 
+			type="checkbox" name="wheat" value="on" >Wheat
+					
 		<h5>Diet</h5>
 		<input type="checkbox" name="kosher" value="on">Kosher <input
 			type="checkbox" name="vegetarian" value="on">Vegetarian <input
@@ -34,41 +38,42 @@ Email: <input type="text" name="email"><br>
 			type="checkbox" name="vegan" value="on">Vegan
 
 		<h5>Calorie Content</h5>
-		<input type="checkbox" name="200 to 300 calories" value="on">200 to 300  
-		Calories <input type="checkbox" name="301 to 400 calories" value="on">301 to 400 
-		Calories<input type="checkbox" name="401 to 500  calories" value="on">401 to 500
-	    Calories<input type="checkbox" name="501 to 600 calories" value="on">501 to 600
-        Calories <input type="checkbox" name="601 to 700 calories" value="on">601 to 700
-		Calories <input type="checkbox" name="701 to 800 calories" value="on">701 to 800 Calories
+		<input type="checkbox" name="200 to 300" value="on">200 to 300  
+		<input type="checkbox" name="301 to 400" value="on">301 to 400 
+		<input type="checkbox" name="401 to 500" value="on">401 to 500
+	    <input type="checkbox" name="501 to 600" value="on">501 to 600
+        <input type="checkbox" name="601 to 700" value="on">601 to 700
+		<input type="checkbox" name="701 to 800" value="on">701 to 800
 
 		 <h5>Carbohydrates</h5>
-		 <input type="checkbox" name="15 to 30 carbs" value="on">15 to 30
-		 Carbs <input type="checkbox" name="31 to 45 " value="on">31 to 45
-		 Carbs <input type="checkbox" name="46 to 55 " value="on">46 to 65
-		Carbs <input type="checkbox" name="56 to 65" value="on">56 to 65
-		 Carbs <input type="checkbox" name="66 to 75" value="on">66 to 75
-		 Carbs <input type="checkbox" name="76 to 85" value="on">76 to 85 Carbs
+		 <input type="checkbox" name="15 to 30" value="on">15 to 30
+		 <input type="checkbox" name="31 to 45 " value="on">31 to 45
+		 <input type="checkbox" name="46 to 55 " value="on">46 to 65
+		 <input type="checkbox" name="56 to 65" value="on">56 to 65
+		 <input type="checkbox" name="66 to 75" value="on">66 to 75
+		 <input type="checkbox" name="76 to 85" value="on">76 to 85 
 
 		
 		
 		 <h5>Fat</h5>
-		<input type="checkbox" name="10 to 15 grams" value="on">10 to 15
-		Grams <input type="checkbox" name="16 to 20 grams" value="on">16 to 20
-		Grams <input type="checkbox" name="21 to 25 grams" value="on">21 to 25 Grams
+		<input type="checkbox" name="10 to 15" value="on">10 to 15
+	    <input type="checkbox" name="16 to 20" value="on">16 to 20
+	    <input type="checkbox" name="21 to 25" value="on">21 to 25 
 		 
 		<h5>Protein</h5>
-		 <input type="checkbox" name="5 to 10 grams" value="on">5 to 10
-		Grams <input type="checkbox" name="11 to 15 grams" value="on">11 to 15
-		Grams <input type="checkbox" name="16 to 20 grams" value="on">16 to 20
-		Grams <input type="checkbox" name="21 to 25 grams" value="on">21 to 25
-		Grams <input type="checkbox" name="26 to 30 grams" value="on">26 to 30 Grams
+		 <input type="checkbox" name="5 to 10" value="on">5 to 10
+		 <input type="checkbox" name="11 to 15" value="on">11 to 15
+		 <input type="checkbox" name="16 to 20" value="on">16 to 20
+		 <input type="checkbox" name="21 to 25" value="on">21 to 25
+		 <input type="checkbox" name="26 to 30" value="on">26 to 30
 		
 		<h5>Cook time</h5>
-		<input type="checkbox" name="15-30 minutes" value="on">15-30
-		Minutes <input type="checkbox" name="30-45 minitues" value="on">30-45
-		Minutes <input type="checkbox" name="45-60 minutes" value="on">45-60
-		Minutes <input type="checkbox" name="over an hour" value="on">Over an hour <br>
+		<input type="checkbox" name="15-30" value="on">15-30
+		 <input type="checkbox" name="30-45" value="on">30-45
+		 <input type="checkbox" name="45-60" value="on">45-60
+		 <input type="checkbox" name="over an hour" value="on">Over an hour <br>
 		
+	
 		 <input type="submit" value="Submit">
 		
 		
