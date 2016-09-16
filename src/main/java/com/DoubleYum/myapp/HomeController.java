@@ -78,20 +78,48 @@ public class HomeController {
 	@RequestMapping(value = "recipeDetails", method = RequestMethod.GET)
 	public String getUserPreference(HttpServletRequest request, Model model) {
 		try {
-			String userinput = request.getParameter("recipeinput");
+			String searchQuery = request.getParameter("recipeinput");
 			String chicken = "chicken";
+			String diet =  request.getParameter("diet");
+			String[] allergens =request.getParameterValues("allergens");
+String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
+String apiStr2 = "limitLicense=false&number=5&offset=0&query=";
 
+			if (diet != null && !diet.equals("")){
+				apiStr1 = apiStr1 + "diet="+ diet + "&";
+			}
+			if(allergens != null){
+				apiStr1 = apiStr1 + "intolerances=" + allergens[0];
+				if(allergens.length>1){
+				for (int i = 1; i < allergens.length-1; i++) {
+					apiStr1 = apiStr1 + "%2C" + allergens[i];
+				}
+				apiStr1 = apiStr1 + allergens[allergens.length-1] + "&";
+				}else{
+					apiStr1 = apiStr1 + "&";
+				}
+			}
+			
+			apiStr1 = apiStr1 +apiStr2 + searchQuery;
 			HttpResponse<JsonNode> response = Unirest
-				.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ userinput)
+					.get(apiStr1)
+					.header("X-Mashape-Key","zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+					.header("Accept", "application/json").asJson();
+			
+	/*	HttpResponse<JsonNode> response = Unirest
+				.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ searchQuery)
 				.header("X-Mashape-Key","zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-				.header("Accept", "application/json").asJson();
+				.header("Accept", "application/json").asJson();	*/
+		//	HttpResponse<JsonNode> response = Unirest
+			//.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=vegan&excludeIngredients=beef&intolerances=wheat&limitLicense=false&number=10&offset=0&query=chinese&type=main+course")
+		//			.header("X-Mashape-Key", "UCxeqFVbwImshOjeqyDm6MCTzENOp13J5pDjsncVScogc8fWaD")
+		//			.header("Accept", "application/json")
+		//			.asJson();
+
 			
 			JSONArray updatedResponse = response.getBody().getObject()
 				.getJSONArray("results");
-			
-			
 			//array for results items
-			//Object picresults = updatedResponse.getJSONObject(0).get("image");
 			ArrayList<Recipes> recipeInput = new ArrayList();
 			for (int i = 0; i < updatedResponse.length(); i++) {
 	
@@ -103,7 +131,6 @@ public class HomeController {
 			}
 			model.addAttribute("recipeInput", recipeInput);
 			
-
 		} catch (Exception e) {
 			return "errorpage";
 		}

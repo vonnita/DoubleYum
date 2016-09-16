@@ -62,6 +62,7 @@
 			<h3>Search<input type="text" name="recipeinput"></center></h3> 
 			<h3><input type="submit" value="Search!"style="visibility: hidden;"/></h3>
       </ul>
+      
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -73,9 +74,33 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#"><button type="button">Substitutes</button></a></p>
-      <p><a href="#">Calories</a></p>
-      <p><a href="#">Time Limit</a></p>		
+  
+  
+  
+    <h3>Allergens</h3>
+    <input type="checkbox" name="allergens" value="Dairy">Dairy<br>
+<input type="checkbox" name="allergens" value="Egg">Egg<br>
+<input type="checkbox" name="allergens" value="Gluten">Gluten<br>
+<input type="checkbox" name="allergens" value="Peanut">Peanut<br>
+<input type="checkbox" name="allergens" value="Sesame">Sesame<br>
+<input type="checkbox" name="allergens" value="Seafood">Seafood<br>
+<input type="checkbox" name="allergens" value="Shellfish">Shellfish<br>
+<input type="checkbox" name="allergens" value="Soy">Soy<br>
+<input type="checkbox" name="allergens" value="Sulfite">Sulfite<br>
+<input type="checkbox" name="allergens" value="Tree Nut">Tree Nut<br>
+<input type="checkbox" name="allergens" value="Wheat">Wheat
+<h3>Diet</h3>
+ <input type="radio" name="diet" value="Pescetarian"> Pescetarian<br>
+  <input type="radio" name="diet" value="Lacto"> Lacto Vegetarian<br>
+  <input type="radio" name="diet" value="Ovo"> Ovo Vegetarian<br>
+   <input type="radio" name="diet" value="Vegan"> Vegan<br>
+  <input type="radio" name="diet" value="Vegetarian"> Vegetarian
+  <input type = "submit" value ="Submit"style="visibility: hidden;">
+
+  <h3>Total Cook Time<input type="text" name="cooktime"></h3> 
+			<h3><input type="submit" value="cooktime"style="visibility: hidden;"/></h3>
+
+       </form>	
     </div>
     <div class="col-sm-8 text-left">
       <h1>Recipe of the Day</h1>
@@ -95,6 +120,7 @@
   </div>
 </div>
 ${recipeInput}
+
 <img src=${pic}>
 
 <footer class="container-fluid text-center">
