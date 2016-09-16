@@ -82,7 +82,7 @@ public class HomeController {
 			String chicken = "chicken";
 
 			HttpResponse<JsonNode> response = Unirest
-				.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ chicken)
+				.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ userinput)
 				.header("X-Mashape-Key","zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 				.header("Accept", "application/json").asJson();
 			

@@ -57,7 +57,7 @@
       </button>
       <a class="navbar-brand" href="#">DoubleYum</a>
    	
-      <form action="recipe" method="get">
+      <form action="recipeDetails" method="get">
       <ul class="nav navbar-nav"> 
 			<h3>Search<input type="text" name="recipeinput"></center></h3> 
 			<h3><input type="submit" value="Search!"style="visibility: hidden;"/></h3>
