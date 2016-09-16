@@ -80,7 +80,7 @@
     <div class="col-sm-8 text-left">
       <h1>Recipe of the Day</h1>
       <h3>${foodTitle}</h3>
-      <a href = ${sourceUrl}><button  type ="button" ><img src=${foodImage} ></button>  </a>
+      <a href = ${sourceUrl}><button  type ="button" ><img src=${foodImage} ></button></a>
 
       <hr>
     </div>
@@ -94,12 +94,11 @@
     </div>
   </div>
 </div>
-
+${recipeInput}
+<img src=${pic}>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
-<p>${title}</p>
-<img src= ${pic}>
 </body>
 </html>

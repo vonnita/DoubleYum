@@ -1,6 +1,7 @@
 package com.DoubleYum.myapp;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -80,29 +81,28 @@ public class HomeController {
 			String userinput = request.getParameter("recipeinput");
 			String chicken = "chicken";
 
-			// if (userinput != null || !userinput.isEmpty()){
-
-			// }
 			HttpResponse<JsonNode> response = Unirest
-					.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="
-							+ chicken)
-					.header("X-Mashape-Key",
-							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-					.header("Accept", "application/json").asJson();
+				.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="+ chicken)
+				.header("X-Mashape-Key","zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+				.header("Accept", "application/json").asJson();
+			
 			JSONArray updatedResponse = response.getBody().getObject()
-					.getJSONArray("results");
-			// Object foodImage = updatedResponse.getJSONObject(0).get("image");
-			String results = "";
-			String picresults = "";
-			String urlresults = "";
+				.getJSONArray("results");
+			
+			
+			//array for results items
+			//Object picresults = updatedResponse.getJSONObject(0).get("image");
+			ArrayList<Recipes> recipeInput = new ArrayList();
 			for (int i = 0; i < updatedResponse.length(); i++) {
-				results += "<br>" + updatedResponse.getJSONObject(i)
-				.get("title");
-				picresults += "<br>" + updatedResponse.getJSONObject(i).get("image");
+	
+				recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));
+			
 				//updatedResponse.getJSONObject(0).get("imageUrls");
-				model.addAttribute("pic", picresults);
-				model.addAttribute("title", results);
+				
+			
 			}
+			model.addAttribute("recipeInput", recipeInput);
+			
 
 		} catch (Exception e) {
 			return "errorpage";
