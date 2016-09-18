@@ -3,12 +3,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Preferences</title>
 </head>
 <body>
-${login}
-	<form action="formpage" method="get">
+//${login}
+${ctable}
+	<form action="formpage1" method="get">
 	<h3>User Information:</h3>
 First Name:<input type="text" name="name"><br>
 Last Name:<input type="text" name="lname"><br>
@@ -17,19 +34,19 @@ Password: <input type="text" name="pswd"><br>
 Email: <input type="text" name="email"><br>
 		 <br> 
 		<h3> Food Preferences:</h3>
-		
+
 		<h5>Allergies</h5>
 		<input type="checkbox" name="dairy" value="on">Dairy <input
-			type="checkbox" name="eggs" value="on">Eggs <input
-			type="checkbox" name="gluten" value="on">Gluten <input
-			type="checkbox" name="peanut" value="on">Peanut <input
-			type="checkbox" name="tree nut" value="on">Tree Nuts <input
-			type="checkbox" name="seasame" value="on">Sesame <input
-			type="checkbox" name="seafood" value="on">Seafood <input
-			type="checkbox" name="shellfish" value="on">Shellfish <input
-			type="checkbox" name="soy" value="on">Soy <input
-			type="checkbox" name="sulfite"value="on">Sulfite <input 
-			type="checkbox" name="wheat" value="on" >Wheat
+			type="checkbox" name="allergies" value=eggs"on">Eggs <input
+			type="checkbox" name="allergies" value="gluten">Gluten <input
+			type="checkbox" name="allergies" value="peanut">Peanut <input
+			type="checkbox" name="allergies" value="tree nuts">Tree Nuts <input
+			type="checkbox" name="allergies" value="sesame">Sesame <input
+			type="checkbox" name="allergies" value="seafood">Seafood <input
+			type="checkbox" name="allergies" value="shellfish">Shellfish <input
+			type="checkbox" name="allergies" value="soy">Soy <input
+			type="checkbox" name="allergies"value="sulfite">Sulfite <input 
+			type="checkbox" name="allergies" value="wheat" >Wheat
 					
 		<h5>Diet</h5>
 		<input type="checkbox" name="kosher" value="on">Kosher <input
@@ -72,8 +89,7 @@ Email: <input type="text" name="email"><br>
 		 <input type="checkbox" name="30-45" value="on">30-45
 		 <input type="checkbox" name="45-60" value="on">45-60
 		 <input type="checkbox" name="over an hour" value="on">Over an hour <br>
-		
-	
+ 	
 		 <input type="submit" value="Submit">
 		
 		
