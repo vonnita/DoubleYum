@@ -143,9 +143,9 @@
     </div>
   </div>
 </div>
-${recipeInput}
+${recipeTitle}
 
-<img src=${pic}>
+<img src=${recipePic}>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
