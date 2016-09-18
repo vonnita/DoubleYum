@@ -107,6 +107,31 @@ public class HomeController {
 							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 					.header("Accept", "application/json").asJson();
 
+			String calories = request.getParameter("calories");
+			String carbs = request.getParameter("carbs");
+			String fat = request.getParameter("fat");
+			String protein = request.getParameter("protein");
+			String nutrientsApi = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?";
+			String nutrientsApi2 = "mincalories=0&minCarbs=0&minfat=0&minProtein=0";
+			if (calories != null && !calories.equals("0")){
+				nutrientsApi = nutrientsApi + "maxcalories=" + calories + "&";
+			}
+			if (carbs != null){
+				nutrientsApi = nutrientsApi + "maxcarbs=" + carbs + "&";
+			}
+			if (fat != null){
+				nutrientsApi = nutrientsApi + "maxfat=" + fat + "&";
+			}
+			if (protein != null){
+				nutrientsApi = nutrientsApi + "maxprotein=" + protein + "&";
+			}
+			nutrientsApi = nutrientsApi + nutrientsApi2;
+			
+			HttpResponse<JsonNode> response1 = Unirest.get(nutrientsApi)
+			.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+			.header("Accept", "application/json")
+			.asJson();
+	
 			/*HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxcalories=250&maxcarbs=100&maxfat=20&maxprotein=100&mincalories=0&minCarbs=0&minfat=0&minProtein=0")
 					.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 					.header("Accept", "application/json")
@@ -138,6 +163,7 @@ public class HomeController {
 				// updatedResponse.getJSONObject(0).get("imageUrls");
 
 			}
+			//model.addAttribute("nutrients", response1.getBody());
 			model.addAttribute("recipeTitle", recipeInput.get(0).getTitle());
 			model.addAttribute("recipePic", recipeInput.get(0).getImage());
 
