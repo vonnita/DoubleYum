@@ -14,15 +14,15 @@ public class Recipes {
 
 	private String title = "";
 	private String image = "";
-	private int calories = "";
-	private int cookTime = "";
+	private int calories = 0;
+	private int cookTime = 0;
 	
-	public Recipes(String title, String image, calories, cookTime) {
+	public Recipes(String title, String image, int calories, int cookTime) {
 
 		this.image = image;
 		this.title = title;
-		this.calories;
-		this.cookTime;
+		this.calories = calories;
+		this.cookTime = cookTime;
 	}
 	
 	
