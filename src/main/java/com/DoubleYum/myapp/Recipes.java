@@ -17,6 +17,12 @@ public class Recipes {
 	private int calories = 0;
 	private int cookTime = 0;
 	
+	
+	public Recipes(String title, String image) {
+		this.image = image;
+		this.title = title;
+		
+	}
 	public Recipes(String title, String image, int calories, int cookTime) {
 
 		this.image = image;
@@ -24,7 +30,6 @@ public class Recipes {
 		this.calories = calories;
 		this.cookTime = cookTime;
 	}
-	
 	
 	public int getCalories() {
 		return calories;
