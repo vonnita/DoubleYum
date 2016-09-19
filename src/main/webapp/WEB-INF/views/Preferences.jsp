@@ -36,8 +36,8 @@ Email: <input type="text" name="email"><br>
 		<h3> Food Preferences:</h3>
 
 		<h5>Allergies</h5>
-		<input type="checkbox" name="dairy" value="on">Dairy <input
-			type="checkbox" name="allergies" value=eggs"on">Eggs <input
+		<input type="checkbox" name="dairy" value="dairy">Dairy <input
+			type="checkbox" name="allergies" value="eggs">Eggs <input
 			type="checkbox" name="allergies" value="gluten">Gluten <input
 			type="checkbox" name="allergies" value="peanut">Peanut <input
 			type="checkbox" name="allergies" value="tree nuts">Tree Nuts <input
@@ -53,6 +53,7 @@ Email: <input type="text" name="email"><br>
 			type="checkbox" name="vegetarian" value="on">Vegetarian <input
 			type="checkbox" name="pescatarian" value="on">Pescatarian <input
 			type="checkbox" name="vegan" value="on">Vegan
+			
 
 		<h5>Calorie Content</h5>
 		<input type="checkbox" name="200 to 300" value="on">200 to 300  
@@ -73,19 +74,19 @@ Email: <input type="text" name="email"><br>
 		
 		
 		 <h5>Fat</h5>
-		<input type="checkbox" name="10 to 15" value="on">10 to 15
+		<input type="checkbox" name="fat" value="on">10 to 15
 	    <input type="checkbox" name="16 to 20" value="on">16 to 20
 	    <input type="checkbox" name="21 to 25" value="on">21 to 25 
 		 
 		<h5>Protein</h5>
-		 <input type="checkbox" name="5 to 10" value="on">5 to 10
+		 <input type="checkbox" name="protein" value="on">5 to 10
 		 <input type="checkbox" name="11 to 15" value="on">11 to 15
 		 <input type="checkbox" name="16 to 20" value="on">16 to 20
 		 <input type="checkbox" name="21 to 25" value="on">21 to 25
 		 <input type="checkbox" name="26 to 30" value="on">26 to 30
 		
 		<h5>Cook time</h5>
-		<input type="checkbox" name="15-30" value="on">15-30
+		<input type="checkbox" name="cookTime" value="on">15-30
 		 <input type="checkbox" name="30-45" value="on">30-45
 		 <input type="checkbox" name="45-60" value="on">45-60
 		 <input type="checkbox" name="over an hour" value="on">Over an hour <br>
