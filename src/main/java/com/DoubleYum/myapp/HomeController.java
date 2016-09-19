@@ -80,7 +80,7 @@ public class HomeController {
 					for (int i = 1; i < allergens.length - 1; i++) {
 						apiStr1 = apiStr1 + "%2C" + allergens[i];
 					}
-					apiStr1 = apiStr1 + allergens[allergens.length - 1] + "&";
+					apiStr1 = apiStr1 + "%2C" + allergens[allergens.length - 1] + "&";
 				} else {
 					apiStr1 = apiStr1 + "&";
 				}
@@ -170,7 +170,7 @@ public class HomeController {
 			model.addAttribute("recipeTitle", listTitle);
 			//model.addAttribute("sourceUrl", listSourceUrl);
 			}
-
+		
 		} catch (Exception e) {
 			return "errorpage";
 		}
