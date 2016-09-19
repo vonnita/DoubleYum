@@ -164,9 +164,12 @@ public class HomeController {
 
 			}
 			//model.addAttribute("nutrients", response1.getBody());
-			model.addAttribute("recipeTitle", recipeInput.get(0).getTitle());
-			model.addAttribute("recipePic", recipeInput.get(0).getImage());
-
+			//model.addAttribute("recipeTitle", recipeInput.get(0).getTitle());
+			//model.addAttribute("recipePic", recipeInput.get(0).getImage());
+model.addAttribute("recipeTitle", apiStr1);
+model.addAttribute("recipePic", allergens[0]);
+model.addAttribute("recipePic1", allergens[1]);
+model.addAttribute("recipePic1", allergens[2]);
 		} catch (Exception e) {
 			return "errorpage";
 		}

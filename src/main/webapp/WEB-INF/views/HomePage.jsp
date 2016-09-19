@@ -185,7 +185,7 @@ footer {
 			</div>
 		</div>
 	</div>
-	${nutrients}
+
 	${recipeTitle}
 
 	<img src=${recipePic}>
