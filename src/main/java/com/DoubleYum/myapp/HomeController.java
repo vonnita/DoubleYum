@@ -31,22 +31,8 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "home";
-	}
-
-	@RequestMapping(value = "homepage", method = RequestMethod.GET)
 	public String getWeather(HttpServletRequest request, Model model) {
 		try {
 
@@ -155,23 +141,39 @@ public class HomeController {
 					.getJSONArray("results");
 			// array for results items
 			ArrayList<Recipes> recipeInput = new ArrayList();
+			String listImage = "";
+			String listTitle = "";
+			//String listSourceUrl ="";
 			for (int i = 0; i < updatedResponse.length(); i++) {
 
-				recipeInput.add(new
-				 Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));
+				recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));//,(updatedResponse.getJSONObject(0).get("sourceUrl").toString())));
+				
+				
 
 				// updatedResponse.getJSONObject(0).get("imageUrls");
-
+				
 			}
 			//model.addAttribute("nutrients", response1.getBody());
-			model.addAttribute("recipeTitle", recipeInput.get(0).getTitle());
-			model.addAttribute("recipePic", recipeInput.get(0).getImage());
-
+			
+			for (int i = 0; i < recipeInput.size(); i++) {	
+			
+			 listImage += "<br>" + recipeInput.get(i).getImage();
+			 listTitle += "<br>" + recipeInput.get(i).getTitle();
+			 //listSourceUrl += "<br>" + recipeInput.get(i).getSourceUrl();
+				
+			model.addAttribute("recipePic",  listImage);
+			model.addAttribute("recipeTitle", listTitle);
+			//model.addAttribute("sourceUrl", listSourceUrl);
+			}
+			
 		} catch (Exception e) {
 			return "errorpage";
 		}
-		return "HomePage";
+		return "generalSearch";
 
 	}
-
+	@RequestMapping(value = "preferences", method = RequestMethod.GET)
+	public String userPreference() {
+	return "Preferences";
+	}
 }

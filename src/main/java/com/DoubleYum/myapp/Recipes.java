@@ -14,6 +14,7 @@ public class Recipes {
 
 	private String title = "";
 	private String image = "";
+	private String sourceUrl= "";
 	private int calories = 0;
 	private int cookTime = 0;
 	
@@ -31,6 +32,12 @@ public class Recipes {
 		this.cookTime = cookTime;
 	}
 	
+	public Recipes(String title, String image, String sourceUrl) {
+		this.image = image;
+		this.title = title;
+		this.sourceUrl = sourceUrl;
+		// TODO Auto-generated constructor stub
+	}
 	public int getCalories() {
 		return calories;
 	}
@@ -55,6 +62,13 @@ public class Recipes {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getSourceUrl(){
+		return sourceUrl;
+	}
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+		
 	}
 
 
