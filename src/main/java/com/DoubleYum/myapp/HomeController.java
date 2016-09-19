@@ -1,5 +1,9 @@
 package com.DoubleYum.myapp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -160,4 +164,75 @@ public class HomeController {
 	public String userPreference() {
 	return "Preferences";
 	}
+	
+	
+	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
+	public String listAllCustomers(HttpServletRequest request, Model model, Object Allergies) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection cnn = DriverManager.getConnection("jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
+			
+			String fname = request.getParameter("name");
+			String lname = request.getParameter("lname");
+			String email = request.getParameter("email");
+			String uname = request.getParameter("uname");
+			String pswd = request.getParameter("pswd");
+
+			String insertCustInfoSQL = "";
+
+			insertCustInfoSQL = "Insert into customer_info values(' " + fname + "','" + lname + "','" + email + "','"
+					+ uname + "','" + pswd + "');";
+				 
+				Statement insertStatement = cnn.createStatement();
+insertStatement.executeUpdate(insertCustInfoSQL);
+				String calories = request.getParameter("calories");
+				String cookTime = request.getParameter("time");
+				String carbs = request.getParameter("carbs");
+				String diet = request.getParameter("diet");
+				String fat = request.getParameter("fat");
+				String protein = request.getParameter("protein");
+
+				String[]allergens = request.getParameterValues("allergies");				
+				
+	
+									
+				
+				PreparedStatement preparedStatement = cnn.prepareStatement("Insert into customer_preference values(?,?,?,?,?,?,?,?)");
+				preparedStatement.setString(1,uname);//2 set the values 
+				String allAllergens= "";
+				if (allergens != null){
+				for (int i = 0; i < allergens.length; i++) {
+					allAllergens = allAllergens + allergens[i] + ",";
+					
+					}	}
+				
+				
+				preparedStatement.setString(2,allAllergens);
+				preparedStatement.setString(3,calories);
+				preparedStatement.setString(4,cookTime);
+				preparedStatement.setString(5,carbs);
+				preparedStatement.setString(6,diet);
+				preparedStatement.setString(7,fat);
+				preparedStatement.setString(8,protein);
+		
+				
+				preparedStatement.executeUpdate();
+	
+					
+			model.addAttribute("ctable", "added new row");
+			
+			
+					}catch (Exception e) {
+						
+					
+					
+			System.out.println(e);
+			// e.printStackTrace();
+			return "errorpage";
+		
+		}
+					return "Preferences";	
+				
+		}
 }

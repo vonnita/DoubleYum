@@ -75,7 +75,7 @@ footer {
 						</center>
 					</h3>
 					<h3>
-						<input type="submit" value="Search!" style="visibility: hidden;" />
+						
 					</h3>
 				</ul>
 		</div>
@@ -89,7 +89,7 @@ footer {
 	</div>
 	</nav>
 
-//${login}
+
 ${ctable}
 	<form action="formpage1" method="get">
 	<h3>User Information:</h3>
@@ -122,8 +122,7 @@ Password: <input type="text" name="pswd"><br>
 				Lacto Vegetarian<br> <input type="radio" name="diet"
 					value="Ovo"> Oto Vegetarian<br> <input type="radio"
 					name="diet" value="Vegan"> Vegan<br> <input
-					type="radio" name="diet" value="Vegetarian"> Vegetarian<input
-					type="submit" value="Submit" style="visibility: hidden;">
+					type="radio" name="diet" value="Vegetarian"> Vegetarian
 				<h4>
 <h4>
 					<Center>Cook Time</Center>
@@ -132,7 +131,7 @@ Password: <input type="text" name="pswd"><br>
 					onchange="showValue(this.value)" /> <span id="range">0</span>
 					<input type="checkbox" name="over an hour" value="on">Over an hour 
  	
-		 <input type="submit" value="Submit"></p>
+		
 				<script type="text/javascript">
 					function showValue(newValue) {
 						document.getElementById("range").innerHTML = newValue;
@@ -172,7 +171,7 @@ Password: <input type="text" name="pswd"><br>
 				</script>
 				</div>
 		
-
+ <input type="submit" value="Submit"></p>
 	</form>
 </body>
 </html>
