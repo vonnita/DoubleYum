@@ -32,7 +32,7 @@
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 600px
+	height: 750px
 }
 
 /* Set background color and 100% height */
@@ -76,8 +76,7 @@ footer {
 				</ul>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li>
+		
 
 
 		</ul>
@@ -89,7 +88,7 @@ footer {
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<h4>
-					<Center>Allergens</Center>
+					<Center>Allergies</Center>
 				</h4>
 				<input type="checkbox" name="allergens" value="Dairy">Dairy<br>
 				<input type="checkbox" name="allergens" value="Egg">Egg<br>
@@ -132,40 +131,11 @@ footer {
 					function calValue(newValue) {
 						document.getElementById("calories").innerHTML = newValue;
 					}
-				</script>
+					</script>
 
-				<h4>
-					<Center>Carbs:</Center>
-				</h4>
-				<input type="range" name="carbs" value="0" min="0" max="500"
-					onchange="carbValue(this.value)" /> <span id="carbs">0</span>
-				<script type="text/javascript">
-					function carbValue(newValue) {
-						document.getElementById("carbs").innerHTML = newValue;
-					}
-				</script>
-				<h4>
-					<Center>Fat:</Center>
-				</h4>
-				<input type="range" name="fat" value="0" min="0" max="1000"
-					onchange="fatValue(this.value)" /> <span id="fat">0</span>
-				<script type="text/javascript">
-					function fatValue(newValue) {
-						document.getElementById("fat").innerHTML = newValue;
-					}
-				</script>
-				<h4>
-					<Center>Protein:</Center>
-				</h4>
-				<input type="range" name="protein" value="0" min="0" max="100"
-					onchange="proteinValue(this.value)" /> <span id="protein">0</span>
-				<script type="text/javascript">
-					function proteinValue(newValue) {
-						document.getElementById("protein").innerHTML = newValue;
-					}
-				</script>
-				</form>
+				
 			</div>
+		
 			<div class="col-sm-8 text-left">
 				<h1>Recipe of the Day</h1>
 				<h3>${foodTitle}</h3>
@@ -175,20 +145,61 @@ footer {
 
 				<hr>
 			</div>
+				<div class="container-fluid text-right">
+			<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<div class="well">
-					<p></p>
+					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li></p>	
 				</div>
 				<div class="well">
-					<p></p>
+					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					Sign up</a></li></</p>
 				</div>
+				<p><h5>Let's get specific!</p></h5>
+					<h4>
+						<Center>Carbs:</Center>
+					</h4>
+					<input type="range" name="carbs" value="0" min="0" max="500"
+						onchange="carbValue(this.value)" /> <span id="carbs">0</span>
+					<script type="text/javascript">
+						function carbValue(newValue) {
+							document.getElementById("carbs").innerHTML = newValue;
+						}
+					</script>
+					<h4>
+						<Center>Fat:</Center>
+					</h4>
+					<input type="range" name="fat" value="0" min="0" max="1000"
+						onchange="fatValue(this.value)" /> <span id="fat">0</span>
+					<script type="text/javascript">
+						function fatValue(newValue) {
+							document.getElementById("fat").innerHTML = newValue;
+						}
+					</script>
+					<h4>
+						<Center>Protein:</Center>
+					</h4>
+					<input type="range" name="protein" value="0" min="0" max="100"
+						onchange="proteinValue(this.value)" /> <span id="protein">0</span>
+					<script type="text/javascript">
+						function proteinValue(newValue) {
+							document.getElementById("protein").innerHTML = newValue;
+						}
+					</script>
+				</form>
 			</div>
 		</div>
 	</div>
 
+
 	${recipeTitle}
 
 	<img src=${recipePic}>
+
+	</div>
+	</div>
+
 
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
