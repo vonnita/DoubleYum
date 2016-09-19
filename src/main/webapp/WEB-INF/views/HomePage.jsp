@@ -194,7 +194,8 @@ footer {
 
 
 	${recipeTitle}
-
+${recipeTitle1}
+${recipeTitle2}
 	<img src=${recipePic}>
 
 	</div>

@@ -65,11 +65,10 @@ public class HomeController {
 	public String getUserPreference(HttpServletRequest request, Model model) {
 		try {
 			String searchQuery = request.getParameter("recipeinput");
-			String chicken = "chicken";
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
-			String apiStr2 = "limitLicense=false&number=5&offset=0&query=";
+			String apiStr2 = "limitLicense=false&number=100&offset=0&query=";
 
 			if (diet != null && !diet.equals("")) {
 				apiStr1 = apiStr1 + "diet=" + diet + "&";
@@ -97,80 +96,60 @@ public class HomeController {
 			String carbs = request.getParameter("carbs");
 			String fat = request.getParameter("fat");
 			String protein = request.getParameter("protein");
-			String nutrientsApi = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?";
-			String nutrientsApi2 = "mincalories=0&minCarbs=0&minfat=0&minProtein=0";
-			if (calories != null && !calories.equals("0")){
-				nutrientsApi = nutrientsApi + "maxcalories=" + calories + "&";
-			}
-			if (carbs != null){
-				nutrientsApi = nutrientsApi + "maxcarbs=" + carbs + "&";
-			}
-			if (fat != null){
-				nutrientsApi = nutrientsApi + "maxfat=" + fat + "&";
-			}
-			if (protein != null){
-				nutrientsApi = nutrientsApi + "maxprotein=" + protein + "&";
-			}
-			nutrientsApi = nutrientsApi + nutrientsApi2;
 			
-			HttpResponse<JsonNode> response1 = Unirest.get(nutrientsApi)
-			.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-			.header("Accept", "application/json")
-			.asJson();
-	
-			/*HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxcalories=250&maxcarbs=100&maxfat=20&maxprotein=100&mincalories=0&minCarbs=0&minfat=0&minProtein=0")
-					.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-					.header("Accept", "application/json")
-					.asJson();*/
+			double caloriesDouble = Double.parseDouble(calories);
+			double carbsDouble = Double.parseDouble(carbs);
+			double fatDouble = Double.parseDouble(fat);
+			double proteinDouble = Double.parseDouble(protein);
 			
-			/*
-			 * HttpResponse<JsonNode> response = Unirest .get(
-			 * "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?limitLicense=false&number=5&offset=0&query="
-			 * + searchQuery) .header("X-Mashape-Key",
-			 * "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-			 * .header("Accept", "application/json").asJson();
-			 */
-			// HttpResponse<JsonNode> response = Unirest
-			// .get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=vegan&excludeIngredients=beef&intolerances=wheat&limitLicense=false&number=10&offset=0&query=chinese&type=main+course")
-			// .header("X-Mashape-Key",
-			// "UCxeqFVbwImshOjeqyDm6MCTzENOp13J5pDjsncVScogc8fWaD")
-			// .header("Accept", "application/json")
-			// .asJson();
-
 			JSONArray updatedResponse = response.getBody().getObject()
 					.getJSONArray("results");
+			
+			//add ids of searched values into arrayList
+			ArrayList<String> ids = new ArrayList<String>();
+			for (int i = 0; i < updatedResponse.length(); i++) {
+			ids.add(updatedResponse.getJSONObject(i).get("id").toString());
+			
+			}
+			//loop thru ID numbers and send them to the new API
+			
+			ArrayList<Recipes> recipeInput = new ArrayList<Recipes>();
+			for (int i = 0; i < ids.size(); i++) {	
+		
+				HttpResponse<JsonNode> response2 = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+ids.get(i)+"/information?includeNutrition=true")
+						.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+						.header("Accept", "application/json")
+						.asJson();
+				Double recCal = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(0).get("amount");
+				Double recFat = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(1).get("amount");
+				Double recCarbs = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(3).get("amount");
+				Double recProtein= (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(7).get("amount");
+				
+				if (recCal <= caloriesDouble && recFat <= fatDouble && recCarbs <= carbsDouble && recProtein <= proteinDouble){
+					
+					recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));
+				
+				}
+			}
+	
 			// array for results items
-			ArrayList<Recipes> recipeInput = new ArrayList();
+			
 			String listImage = "";
 			String listTitle = "";
 			//String listSourceUrl ="";
-			for (int i = 0; i < updatedResponse.length(); i++) {
-
-				recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));//,(updatedResponse.getJSONObject(0).get("sourceUrl").toString())));
-				
-				
-
-				// updatedResponse.getJSONObject(0).get("imageUrls");
-				
-			}
-			//model.addAttribute("nutrients", response1.getBody());
-
-			//model.addAttribute("recipeTitle", recipeInput.get(0).getTitle());
-			//model.addAttribute("recipePic", recipeInput.get(0).getImage());
-
-
-			
+		
+		
 			for (int i = 0; i < recipeInput.size(); i++) {	
 			
-			 listImage += "<br>" + recipeInput.get(i).getImage();
+			// listImage += "<br>" + recipeInput.get(i).getImage();
 			 listTitle += "<br>" + recipeInput.get(i).getTitle();
 			 //listSourceUrl += "<br>" + recipeInput.get(i).getSourceUrl();
 				
-			model.addAttribute("recipePic",  listImage);
-			model.addAttribute("recipeTitle", listTitle);
-			//model.addAttribute("sourceUrl", listSourceUrl);
+			
 			}
 		
+	
+			model.addAttribute("recipeTitle",listTitle);
 		} catch (Exception e) {
 			return "errorpage";
 		}
