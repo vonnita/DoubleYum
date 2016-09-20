@@ -164,6 +164,10 @@ public class HomeController {
 	public String userPreference() {
 	return "Preferences";
 	}
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String userLogin() {
+	return "login";
+	}
 	
 	
 	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
@@ -200,14 +204,15 @@ insertStatement.executeUpdate(insertCustInfoSQL);
 				
 				PreparedStatement preparedStatement = cnn.prepareStatement("Insert into customer_preference values(?,?,?,?,?,?,?,?)");
 				preparedStatement.setString(1,uname);//2 set the values 
+				
+				
+				
 				String allAllergens= "";
 				if (allergens != null){
 				for (int i = 0; i < allergens.length; i++) {
 					allAllergens = allAllergens + allergens[i] + ",";
 					
 					}	}
-				
-				
 				preparedStatement.setString(2,allAllergens);
 				preparedStatement.setString(3,calories);
 				preparedStatement.setString(4,cookTime);
