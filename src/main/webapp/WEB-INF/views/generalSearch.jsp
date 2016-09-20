@@ -119,7 +119,9 @@
        </form>	
     </div>
     <div class="col-sm-8 text-left">
+   	<h2>RESULTS</h2>
    	<h3>${nutrients}</h3>
+   	
    <h3> ${recipeTitle}</h3>
 	<!-- <img src=${recipePic}></button></a> -->
  

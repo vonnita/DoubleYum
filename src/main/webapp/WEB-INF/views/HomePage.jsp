@@ -115,10 +115,10 @@ footer {
 					<Center>Cook Time</Center>
 				</h4>
 				<input type="range" name="cooktime" value="0" min="0" max="360"
-					onchange="showValue(this.value)" /> <span id="range">0</span>
+					onchange="showValue(this.value)" /> <span id="cooktime">0</span>
 				<script type="text/javascript">
 					function showValue(newValue) {
-						document.getElementById("range").innerHTML = newValue;
+						document.getElementById("cooktime").innerHTML = newValue;
 					}
 				</script>
 

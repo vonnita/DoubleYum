@@ -72,7 +72,7 @@ public class HomeController {
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
-			String apiStr2 = "limitLicense=false&number=100&offset=0&query=";
+			String apiStr2 = "limitLicense=false&number=1000&offset=0&query=";
 
 			if (diet != null && !diet.equals("")) {
 				apiStr1 = apiStr1 + "diet=" + diet + "&";
@@ -83,7 +83,8 @@ public class HomeController {
 					for (int i = 1; i < allergens.length - 1; i++) {
 						apiStr1 = apiStr1 + "%2C" + allergens[i];
 					}
-					apiStr1 = apiStr1 + "%2C" + allergens[allergens.length - 1] + "&";
+					apiStr1 = apiStr1 + "%2C" + allergens[allergens.length - 1]
+							+ "&";
 				} else {
 					apiStr1 = apiStr1 + "&";
 				}
@@ -96,87 +97,107 @@ public class HomeController {
 							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 					.header("Accept", "application/json").asJson();
 
+			String cookTime = request.getParameter("cooktime");
 			String calories = request.getParameter("calories");
 			String carbs = request.getParameter("carbs");
 			String fat = request.getParameter("fat");
 			String protein = request.getParameter("protein");
-			
+			double cookTimeDouble = Double.parseDouble(cookTime);
 			double caloriesDouble = Double.parseDouble(calories);
 			double carbsDouble = Double.parseDouble(carbs);
 			double fatDouble = Double.parseDouble(fat);
 			double proteinDouble = Double.parseDouble(protein);
-			
+
 			JSONArray updatedResponse = response.getBody().getObject()
 					.getJSONArray("results");
-			
-			//add ids of searched values into arrayList
+
+			// add ids of searched values into arrayList
 			ArrayList<String> ids = new ArrayList<String>();
 			for (int i = 0; i < updatedResponse.length(); i++) {
-			ids.add(updatedResponse.getJSONObject(i).get("id").toString());
-			
+				ids.add(updatedResponse.getJSONObject(i).get("id").toString());
+
 			}
-			//loop thru ID numbers and send them to the new API
+			// loop thru ID numbers and send them to the new API
 			
 			ArrayList<Recipes> recipeInput = new ArrayList<Recipes>();
-			for (int i = 0; i < ids.size(); i++) {	
-		
-				HttpResponse<JsonNode> response2 = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+ids.get(i)+"/information?includeNutrition=true")
-						.header("X-Mashape-Key", "zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
-						.header("Accept", "application/json")
-						.asJson();
-				Double recCal = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(0).get("amount");
-				Double recFat = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(1).get("amount");
-				Double recCarbs = (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(3).get("amount");
-				Double recProtein= (Double)	response2.getBody().getObject().getJSONObject("nutrition").getJSONArray("nutrients").getJSONObject(7).get("amount");
+			for (int i = 0; i < ids.size(); i++) {
+				//
+				HttpResponse<JsonNode> response2 = Unirest
+						.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"
+								+ ids.get(i)
+								+ "/information?includeNutrition=true")
+						.header("X-Mashape-Key",
+								"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
+						.header("Accept", "application/json").asJson();
 				
-				if (recCal <= caloriesDouble && recFat <= fatDouble && recCarbs <= carbsDouble && recProtein <= proteinDouble){
-					
-					recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),(updatedResponse.getJSONObject(i).get("image").toString())));
-				
+				Double recCal = (Double) response2.getBody().getObject()
+						.getJSONObject("nutrition").getJSONArray("nutrients")
+						.getJSONObject(0).get("amount");
+				Double recFat = (Double) response2.getBody().getObject()
+						.getJSONObject("nutrition").getJSONArray("nutrients")
+						.getJSONObject(1).get("amount");
+				Double recCarbs = (Double) response2.getBody().getObject()
+						.getJSONObject("nutrition").getJSONArray("nutrients")
+						.getJSONObject(3).get("amount");
+				Double recProtein = (Double) response2.getBody().getObject()
+						.getJSONObject("nutrition").getJSONArray("nutrients")
+						.getJSONObject(7).get("amount");
+			Double recCookTime =
+					(Double)response2.getBody().getObject().get("readyInMinutes");
+				//&& recCookTime <= cookTimeDouble
+				if (recCal <= caloriesDouble && recFat <= fatDouble
+						&& recCarbs <= carbsDouble
+						&& recProtein <= proteinDouble && recCookTime <= cookTimeDouble) {
+
+					recipeInput.add(new Recipes(updatedResponse
+							.getJSONObject(i).get("title").toString(),
+							(updatedResponse.getJSONObject(i).get("image")
+									.toString())));
+
 				}
 			}
-	
+
 			// array for results items
-			
+
 			String listImage = "";
 			String listTitle = "";
-			//String listSourceUrl ="";
-		
-		
-			for (int i = 0; i < recipeInput.size(); i++) {	
-			
-			// listImage += "<br>" + recipeInput.get(i).getImage();
-			 listTitle += "<br>" + recipeInput.get(i).getTitle();
-			 //listSourceUrl += "<br>" + recipeInput.get(i).getSourceUrl();
-				
-			
+			// String listSourceUrl ="";
+
+			for (int i = 0; i < recipeInput.size(); i++) {
+
+				// listImage += "<br>" + recipeInput.get(i).getImage();
+				listTitle += "<br>" + recipeInput.get(i).getTitle();
+				// listSourceUrl += "<br>" + recipeInput.get(i).getSourceUrl();
+
 			}
-		
-	
-			model.addAttribute("recipeTitle",listTitle);
+
+			model.addAttribute("recipeTitle", listTitle);
 		} catch (Exception e) {
 			return "errorpage";
 		}
 		return "generalSearch";
 
 	}
+
 	@RequestMapping(value = "preferences", method = RequestMethod.GET)
 	public String userPreference() {
-	return "Preferences";
+		return "Preferences";
 	}
+
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String userLogin() {
-	return "login";
+		return "login";
 	}
-	
-	
+
 	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
-	public String listAllCustomers(HttpServletRequest request, Model model, Object Allergies) {
+	public String listAllCustomers(HttpServletRequest request, Model model,
+			Object Allergies) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection cnn = DriverManager.getConnection("jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
-			
+			Connection cnn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
+
 			String fname = request.getParameter("name");
 			String lname = request.getParameter("lname");
 			String email = request.getParameter("email");
@@ -185,59 +206,52 @@ public class HomeController {
 
 			String insertCustInfoSQL = "";
 
-			insertCustInfoSQL = "Insert into customer_info values(' " + fname + "','" + lname + "','" + email + "','"
-					+ uname + "','" + pswd + "');";
-				 
-				Statement insertStatement = cnn.createStatement();
-insertStatement.executeUpdate(insertCustInfoSQL);
-				String calories = request.getParameter("calories");
-				String cookTime = request.getParameter("time");
-				String carbs = request.getParameter("carbs");
-				String diet = request.getParameter("diet");
-				String fat = request.getParameter("fat");
-				String protein = request.getParameter("protein");
+			insertCustInfoSQL = "Insert into customer_info values(' " + fname
+					+ "','" + lname + "','" + email + "','" + uname + "','"
+					+ pswd + "');";
 
-				String[]allergens = request.getParameterValues("allergies");				
-				
-	
-									
-				
-				PreparedStatement preparedStatement = cnn.prepareStatement("Insert into customer_preference values(?,?,?,?,?,?,?,?)");
-				preparedStatement.setString(1,uname);//2 set the values 
-				
-				
-				
-				String allAllergens= "";
-				if (allergens != null){
+			Statement insertStatement = cnn.createStatement();
+			insertStatement.executeUpdate(insertCustInfoSQL);
+			String calories = request.getParameter("calories");
+			String cookTime = request.getParameter("cooktime");
+			String carbs = request.getParameter("carbs");
+			String diet = request.getParameter("diet");
+			String fat = request.getParameter("fat");
+			String protein = request.getParameter("protein");
+
+			String[] allergens = request.getParameterValues("allergies");
+
+			PreparedStatement preparedStatement = cnn
+					.prepareStatement("Insert into customer_preference values(?,?,?,?,?,?,?,?)");
+			preparedStatement.setString(1, uname);// 2 set the values
+
+			String allAllergens = "";
+			if (allergens != null) {
 				for (int i = 0; i < allergens.length; i++) {
 					allAllergens = allAllergens + allergens[i] + ",";
-					
-					}	}
-				preparedStatement.setString(2,allAllergens);
-				preparedStatement.setString(3,calories);
-				preparedStatement.setString(4,cookTime);
-				preparedStatement.setString(5,carbs);
-				preparedStatement.setString(6,diet);
-				preparedStatement.setString(7,fat);
-				preparedStatement.setString(8,protein);
-		
-				
-				preparedStatement.executeUpdate();
-	
-					
+
+				}
+			}
+			preparedStatement.setString(2, allAllergens);
+			preparedStatement.setString(3, calories);
+			preparedStatement.setString(4, cookTime);
+			preparedStatement.setString(5, carbs);
+			preparedStatement.setString(6, diet);
+			preparedStatement.setString(7, fat);
+			preparedStatement.setString(8, protein);
+
+			preparedStatement.executeUpdate();
+
 			model.addAttribute("ctable", "added new row");
-			
-			
-					}catch (Exception e) {
-						
-					
-					
+
+		} catch (Exception e) {
+
 			System.out.println(e);
 			// e.printStackTrace();
 			return "errorpage";
-		
+
 		}
-					return "Preferences";	
-				
-		}
+		return "Preferences";
+
+	}
 }
