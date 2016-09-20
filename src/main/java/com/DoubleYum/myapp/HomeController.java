@@ -72,7 +72,7 @@ public class HomeController {
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
-			String apiStr2 = "limitLicense=false&number=1000&offset=0&query=";
+			String apiStr2 = "limitLicense=false&number=100&offset=0&query=";
 
 			if (diet != null && !diet.equals("")) {
 				apiStr1 = apiStr1 + "diet=" + diet + "&";
@@ -96,13 +96,29 @@ public class HomeController {
 					.header("X-Mashape-Key",
 							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 					.header("Accept", "application/json").asJson();
-
+			
 			String cookTime = request.getParameter("cooktime");
+			if (cookTime.equals("0")){
+				cookTime = "360";
+			}
 			String calories = request.getParameter("calories");
+			if (calories.equals("0")){
+				calories = "3000";
+			}
 			String carbs = request.getParameter("carbs");
+			if (carbs.equals("0")){
+				carbs = "500";
+			}
 			String fat = request.getParameter("fat");
+			if (fat.equals("0")){
+				fat = "1000";
+			}
 			String protein = request.getParameter("protein");
-			double cookTimeDouble = Double.parseDouble(cookTime);
+			if (protein.equals("0")){
+				protein = "100";
+			}
+		
+			int cookTimeDouble = Integer.parseInt(cookTime);
 			double caloriesDouble = Double.parseDouble(calories);
 			double carbsDouble = Double.parseDouble(carbs);
 			double fatDouble = Double.parseDouble(fat);
@@ -142,9 +158,9 @@ public class HomeController {
 				Double recProtein = (Double) response2.getBody().getObject()
 						.getJSONObject("nutrition").getJSONArray("nutrients")
 						.getJSONObject(7).get("amount");
-			Double recCookTime =
-					(Double)response2.getBody().getObject().get("readyInMinutes");
-				//&& recCookTime <= cookTimeDouble
+			int recCookTime =
+					(Integer)response2.getBody().getObject().get("readyInMinutes");
+				//
 				if (recCal <= caloriesDouble && recFat <= fatDouble
 						&& recCarbs <= carbsDouble
 						&& recProtein <= proteinDouble && recCookTime <= cookTimeDouble) {
