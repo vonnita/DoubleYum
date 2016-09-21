@@ -221,8 +221,8 @@ public class HomeController {
 		return "loggedInView";
 	}
 
-	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
-	public String listAllCustomers(HttpServletRequest request, Model model,
+	@RequestMapping(value = "formuserlogin", method = RequestMethod.GET)
+	public String userLogin(HttpServletRequest request, Model model,
 			Object Allergies) {
 
 		try {
@@ -244,6 +244,31 @@ public class HomeController {
 
 			Statement insertStatement = cnn.createStatement();
 			insertStatement.executeUpdate(insertCustInfoSQL);
+	
+			model.addAttribute("username", uname);
+		} catch (Exception e) {
+
+			System.out.println(e);
+			// e.printStackTrace();
+			return "errorpage";
+
+		}
+		return "loggedInView";
+
+	}	
+	
+	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
+	public String listAllCustomers(HttpServletRequest request, Model model,
+			Object Allergies) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection cnn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
+
+		
+			String uname = request.getParameter("uname");
+		
 			String calories = request.getParameter("calories");
 			String cookTime = request.getParameter("cooktime");
 			String carbs = request.getParameter("carbs");
@@ -275,7 +300,7 @@ public class HomeController {
 			preparedStatement.executeUpdate();
 
 			model.addAttribute("ctable", "added new row");
-			model.addAttribute("username", uname);
+			
 		} catch (Exception e) {
 
 			System.out.println(e);
