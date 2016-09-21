@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -16,59 +16,10 @@
 
 <title>Insert title here</title>
 
-<style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-   
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #ec407a;
-      
-    }
-    .navbar-brand {
-      font-size: 50px;
-    }
-    .img{
-    	
-    }
-    
-    }
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 750px}
-    
-    /* Set background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #ffcdd2;
-      height: 100%;
-    }
-  
-    
-    /* Set background color, text and some padding */
-    footer {
-      background-color: white;
-      color: black;
-      padding: 15px;
-    }
-    .container{
-    width: 200px;
-    height: 120px;
-}
-.container img {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content:space-between;
-}
-  width: 25%; 
-  text-align: center;">
-  
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/mainStyle.css">
 
-    }
-    
-   /*if time, automatically adjust for mobile screens*/	
-}
- </style>
+ 
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -122,7 +73,7 @@
 			<script type="text/javascript">
 			function showValue(newValue)
 			{
-			document.getElementById("range").innerHTML=newValue;
+			document.getElementById("cooktime").innerHTML=newValue;
 			}
 			</script>
 
@@ -152,11 +103,11 @@
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<div class="well">
-					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
 					Login</a></li></p>	
 				</div>
 				<div class="well">
-					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<p><li><a href=""><span class="glyphicon glyphicon-log-in"></span>
 					Sign up</a></li></</p>
 				</div>
 				<p><h5>Let's get specific!</p></h5>

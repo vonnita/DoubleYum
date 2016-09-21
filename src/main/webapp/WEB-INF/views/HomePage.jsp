@@ -19,6 +19,7 @@
 
 <title>Insert title here</title>
 
+<link rel="stylesheet" href="resources/main.css">
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -152,11 +153,11 @@ img {
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<div class="well">
-					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
 					Login</a></li></p>	
 				</div>
 				<div class="well">
-					<p><li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
 					Sign up</a></li></</p>
 				</div>
 				<p><h5>Let's get specific!</p></h5>

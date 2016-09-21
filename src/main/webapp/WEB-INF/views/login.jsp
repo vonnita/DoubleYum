@@ -54,7 +54,7 @@
       </div>
 
   <button id="buttonlogintoregister">Login</button>
-      <p id="plogintoregister">Not Registered? </p><p id="textchange" onclick="register()"> Sign up!</p>
+      <p id="plugintoregister">Not Registered? </p><p id="textchange" onclick="register()"> Sign up!</p>
     </div>
 
 

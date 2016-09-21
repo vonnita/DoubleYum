@@ -3,8 +3,14 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500);
 
 html{
-  background-color: #333;
+  background-color: #666;
   font-family: "Roboto";
+  
+}
+body {
+	opacity: 0.75;
+	background: url(http://learningherbs.com/wp-content/uploads/2014/11/IMAGE-21.jpg);
+	
 }
 
 /* BOX LOGIN */
