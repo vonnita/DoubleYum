@@ -89,15 +89,6 @@ footer {
 	</nav>
 
 
-${ctable}
-	<form action="formpage1" method="get">
-	<h3>User Information:</h3>
-First Name:<input type="text" name="name"><br>
-Last Name:<input type="text" name="lname"><br>
-Username: <input type="text" name="uname"><br>
-Password: <input type="text" name="pswd"><br>
-	Email:    <input type="text" name="email"><br>
-		 <br> 
 		<h3> Food Preferences:</h3>
 
 <div class="col-sm-8 text-left">
