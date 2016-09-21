@@ -65,7 +65,7 @@ footer {
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">DoubleYum</a>
+			<a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a>
 			</h2>
 
 			<form action="recipeDetails" method="get">
@@ -82,7 +82,6 @@ footer {
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
 					Login</a></li>
-
 
 		</ul>
 	</div>

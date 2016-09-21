@@ -30,12 +30,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">DoubleYum</a></h2>
+      <a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a></h2>
    	
       <form action="homepage" method="get">
      <ul class="nav navbar-nav"> 
 		<h3>Search<input type="text" name="recipeinput"></center></h3> 
-		<h3><input type="submit" value="Search!"style="visibility: hidden;"/></h3>	
+		<h3><input type="submit" value="Search!"></h3>	
       </ul> 
       
       </div>
@@ -147,3 +147,5 @@
 	</div>
 	</div>
 	</div>
+	</body>
+	</html>

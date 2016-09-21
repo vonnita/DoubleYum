@@ -30,6 +30,7 @@
 
 .navbar-brand {
 	font-size: 50px;
+	font-color: white;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
@@ -67,7 +68,7 @@ img {
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">DoubleYum</a>
+			<a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a>
 			</h2>
 
 			<form action="recipeDetails" method="get">
@@ -77,7 +78,7 @@ img {
 						</center>
 					</h3>
 					<h3>
-						<input type="submit" value="Search!" style="visibility: hidden;" />
+						<input type="submit" value="Search!"> <!-- style="visibility: hidden;" --> 
 					</h3>
 				</ul>
 		</div>
@@ -197,18 +198,20 @@ img {
 	</div>
 
 
-${recipeTitle}
+<%-- ${recipeTitle}
 ${recipeTitle1}
 ${recipeTitle2}
 
 	<img src=${recipePic}>
+ --%>
+	</div>
 
-	</div>
-	</div>
 
 
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-</body>
-</html>
+	</body>
+	</html>
+	
+
