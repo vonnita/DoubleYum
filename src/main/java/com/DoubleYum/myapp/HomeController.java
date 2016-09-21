@@ -74,6 +74,8 @@ public class HomeController {
 	public String getUserPreference(HttpServletRequest request, Model model) {
 		try {
 			String searchQuery = request.getParameter("recipeinput");
+			String updatedQuery = searchQuery.replace(" ", "+");
+			
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
@@ -95,7 +97,7 @@ public class HomeController {
 				}
 			}
 
-			apiStr1 = apiStr1 + apiStr2 + searchQuery;
+			apiStr1 = apiStr1 + apiStr2 + updatedQuery;
 			HttpResponse<JsonNode> response = Unirest
 					.get(apiStr1)
 					.header("X-Mashape-Key",
@@ -194,6 +196,8 @@ public class HomeController {
 			model.addAttribute("sourceUrl", listSourceUrl);
 			model.addAttribute("image", listImage);
 			model.addAttribute("recipeTitle", listTitle);
+			model.addAttribute("counter", recipeInput.size());
+			model.addAttribute("query", searchQuery);
 		} catch (Exception e) {
 			return "errorpage";
 		}
