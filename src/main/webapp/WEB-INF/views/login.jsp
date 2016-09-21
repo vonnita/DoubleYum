@@ -14,10 +14,12 @@
 
 </head>
 <body>
+
+<form action="formuserlogin" method="get">
 <div class="box">
       <h1 id="logintoregister">Login</h1>
     <div class="group">      
-      <input class="inputMaterial" type="text" required>
+      <input class="inputMaterial" name= "uname" type="text" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Username</label>
@@ -29,34 +31,35 @@
       <label>Password</label>
       </div>
 	  <div class="group show">      
-      <input class="inputMaterial" type="password" required>
+      <input class="inputMaterial" name="pswd" type="password" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Confirm Password</label>
       </div>
 	  <div class="group show">      
-      <input class="inputMaterial" type="text" required>
+      <input class="inputMaterial" name="name" type="text" required>
       <span class="highlight"></span>
       <span class="bar"></span>
-      <label>Name</label>
+      <label>First Name</label>
       </div>
 	  <div class="group show">      
-      <input class="inputMaterial" type="text" required>
+      <input class="inputMaterial" name="lname" type="text" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Last Name</label>
       </div>
 	  <div class="group show">      
-      <input class="inputMaterial" type="text" required>
+      <input class="inputMaterial" name="email" type="text" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Email</label>
       </div>
 
-  <button id="buttonlogintoregister">Login</button>
+  <button id="buttonlogintoregister">Login</button> 
       <p id="plugintoregister">Not Registered? </p><p id="textchange" onclick="register()"> Sign up!</p>
+    
     </div>
-
+</form>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="resources/js/login.js"></script>
