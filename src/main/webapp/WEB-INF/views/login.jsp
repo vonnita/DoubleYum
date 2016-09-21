@@ -53,7 +53,7 @@
       <label>Email</label>
       </div>
 
-  <button id="buttonlogintoregister">Login</button>
+  <button id="buttonlogintoregister" type = "submit">Login</button>
       <p id="plugintoregister">Not Registered? </p><p id="textchange" onclick="register()"> Sign up!</p>
     </div>
 

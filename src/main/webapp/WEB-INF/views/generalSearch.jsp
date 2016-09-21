@@ -1,6 +1,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -90,12 +92,21 @@
     </div>
     <div class="col-sm-8 text-left">
    	<h2>${counter} results for "${query}"</h2>
-   	<h3>${nutrients}</h3>
+   <%-- 	<h3>${nutrients}</h3> --%>
    	
-   <h3> ${recipeTitle}</h3>
+<%--    <h3> ${recipeTitle}</h3>
+    --%>
+   
+   <c:forEach var="recipe" items = "${recipeInput}">
+ 
+ <c:out value="${recipe.title}"/>
+  <img src="${recipe.image}">
+ <p>
+</c:forEach>
+   
    <div class="container">
-   <img src=${image}>
-   <a href=${sourceUrl}></a>
+   <!-- <img src=${image}>
+   <a href=${sourceUrl}></a> -->
  	</div>
  	<hr>
 			</div>

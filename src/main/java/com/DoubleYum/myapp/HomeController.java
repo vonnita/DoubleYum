@@ -79,7 +79,7 @@ public class HomeController {
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
-			String apiStr2 = "limitLicense=false&number=50&offset=0&query=";
+			String apiStr2 = "limitLicense=false&number=10&offset=0&query=";
 
 			if (diet != null && !diet.equals("")) {
 				apiStr1 = apiStr1 + "diet=" + diet + "&";
@@ -124,7 +124,7 @@ public class HomeController {
 			if (protein.equals("0")){
 				protein = "100";
 			}
-		
+			
 			int cookTimeDouble = Integer.parseInt(cookTime);
 			double caloriesDouble = Double.parseDouble(calories);
 			double carbsDouble = Double.parseDouble(carbs);
@@ -176,7 +176,8 @@ public class HomeController {
 							.getJSONObject(i).get("title").toString(),
 							(updatedResponse.getJSONObject(i).get("image")
 									.toString())));
-
+				
+					
 				}
 			}
 
@@ -193,6 +194,7 @@ public class HomeController {
 				listSourceUrl += "<br>" + "<a href=\"http://" + recipeInput.get(i).getSourceUrl() + "\">";
 
 			}
+			model.addAttribute("recipeInput", recipeInput);
 			model.addAttribute("sourceUrl", listSourceUrl);
 			model.addAttribute("image", listImage);
 			model.addAttribute("recipeTitle", listTitle);
