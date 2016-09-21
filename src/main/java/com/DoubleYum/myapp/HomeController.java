@@ -77,7 +77,7 @@ public class HomeController {
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
-			String apiStr2 = "limitLicense=false&number=100&offset=0&query=";
+			String apiStr2 = "limitLicense=false&number=50&offset=0&query=";
 
 			if (diet != null && !diet.equals("")) {
 				apiStr1 = apiStr1 + "diet=" + diet + "&";
@@ -182,16 +182,17 @@ public class HomeController {
 
 			String listImage = "";
 			String listTitle = "";
-			// String listSourceUrl ="";
+			String listSourceUrl ="";
 
 			for (int i = 0; i < recipeInput.size(); i++) {
 
-				// listImage += "<br>" + recipeInput.get(i).getImage();
+				listImage += "<img src=\"https://spoonacular.com/recipeImages/" + recipeInput.get(i).getImage() + "\">";
 				listTitle += "<br>" + recipeInput.get(i).getTitle();
-				// listSourceUrl += "<br>" + recipeInput.get(i).getSourceUrl();
+				listSourceUrl += "<br>" + "<a href=\"http://" + recipeInput.get(i).getSourceUrl() + "\">";
 
 			}
-
+			model.addAttribute("sourceUrl", listSourceUrl);
+			model.addAttribute("image", listImage);
 			model.addAttribute("recipeTitle", listTitle);
 		} catch (Exception e) {
 			return "errorpage";
@@ -274,13 +275,6 @@ public class HomeController {
 		}
 		return "Preferences";
 
-	}
-
-
-				
-								
-			
-			
-		
+	}	
 
 }

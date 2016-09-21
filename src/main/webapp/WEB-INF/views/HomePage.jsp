@@ -48,6 +48,11 @@ footer {
 	color: black;
 	padding: 15px;
 }
+img {
+	border-radius: circle;
+	width: 450px;
+	height: 350px;
+}
 /*if time, automatically adjust for mobile screens*/
 }
 </style>
@@ -139,9 +144,7 @@ footer {
 			<div class="col-sm-8 text-left">
 				<h1>Recipe of the Day</h1>
 				<h3>${foodTitle}</h3>
-				<a href=${sourceUrl}><button type="button">
-						<img src=${foodImage} >
-					</button></a>
+				<Center><a href=${sourceUrl}><button type="button"><img src=${foodImage}></button></a></Center>
 
 				<hr>
 			</div>
@@ -193,9 +196,10 @@ footer {
 	</div>
 
 
-	${recipeTitle}
+${recipeTitle}
 ${recipeTitle1}
 ${recipeTitle2}
+
 	<img src=${recipePic}>
 
 	</div>

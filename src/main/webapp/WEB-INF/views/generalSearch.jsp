@@ -27,7 +27,10 @@
     }
     .navbar-brand {
       font-size: 50px;
-    
+    }
+    .img{
+    	
+    }
     
     }
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -47,6 +50,22 @@
       color: black;
       padding: 15px;
     }
+    .container{
+    width: 200px;
+    height: 120px;
+}
+.container img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content:space-between;
+}
+  width: 25%; 
+  text-align: center;">
+  
+
+    }
+    
    /*if time, automatically adjust for mobile screens*/	
 }
  </style>
@@ -123,8 +142,10 @@
    	<h3>${nutrients}</h3>
    	
    <h3> ${recipeTitle}</h3>
-	<!-- <img src=${recipePic}></button></a> -->
- 
+   <div class="container">
+   <img src=${image}>
+   <a href=${sourceUrl}></a>
+ 	</div>
  	<hr>
 			</div>
 				<div class="container-fluid text-right">
