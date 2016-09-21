@@ -63,10 +63,10 @@ public class Recipes {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSourceUrl(){
+	public String getsourceUrl(){
 		return sourceUrl;
 	}
-	public void setSourceUrl(String sourceUrl) {
+	public void setsourceUrl(String sourceUrl) {
 		this.sourceUrl = sourceUrl;
 		
 	}

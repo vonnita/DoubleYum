@@ -96,17 +96,15 @@
    	
 <%--    <h3> ${recipeTitle}</h3>
     --%>
-   
+ <div class="container">  
    <c:forEach var="recipe" items = "${recipeInput}">
  
  <c:out value="${recipe.title}"/>
-  <img src="${recipe.image}">
+  <a href ="${recipe.sourceUrl}"<button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}"></button></a>
  <p>
 </c:forEach>
-   
-   <div class="container">
-   <!-- <img src=${image}>
-   <a href=${sourceUrl}></a> -->
+
+  
  	</div>
  	<hr>
 			</div>

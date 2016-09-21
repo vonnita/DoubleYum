@@ -172,10 +172,7 @@ public class HomeController {
 						&& recCarbs <= carbsDouble
 						&& recProtein <= proteinDouble && recCookTime <= cookTimeDouble) {
 
-					recipeInput.add(new Recipes(updatedResponse
-							.getJSONObject(i).get("title").toString(),
-							(updatedResponse.getJSONObject(i).get("image")
-									.toString())));
+					recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),updatedResponse.getJSONObject(i).get("image").toString(), response2.getBody().getObject().get("sourceUrl").toString()));
 				
 					
 				}
@@ -191,11 +188,11 @@ public class HomeController {
 
 				listImage += "<img src=\"https://spoonacular.com/recipeImages/" + recipeInput.get(i).getImage() + "\">";
 				listTitle += "<br>" + recipeInput.get(i).getTitle();
-				listSourceUrl += "<br>" + "<a href=\"http://" + recipeInput.get(i).getSourceUrl() + "\">";
+				//listSou += "<br>" + "<a href=\"http://" + recipeInput.get(i).getimageUrlsl() + "\">";
 
 			}
 			model.addAttribute("recipeInput", recipeInput);
-			model.addAttribute("sourceUrl", listSourceUrl);
+			//model.addAttribute("sourceUrl", listSourceUrl);
 			model.addAttribute("image", listImage);
 			model.addAttribute("recipeTitle", listTitle);
 			model.addAttribute("counter", recipeInput.size());
