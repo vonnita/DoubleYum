@@ -214,6 +214,10 @@ public class HomeController {
 	public String userLogin() {
 		return "login";
 	}
+	@RequestMapping(value = "loggedInView", method = RequestMethod.GET)
+	public String loggedIn() {
+		return "loggedInView";
+	}
 
 	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
 	public String listAllCustomers(HttpServletRequest request, Model model,
@@ -269,7 +273,7 @@ public class HomeController {
 			preparedStatement.executeUpdate();
 
 			model.addAttribute("ctable", "added new row");
-
+			model.addAttribute("username", uname);
 		} catch (Exception e) {
 
 			System.out.println(e);
