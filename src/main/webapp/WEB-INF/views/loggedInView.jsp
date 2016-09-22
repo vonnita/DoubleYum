@@ -85,14 +85,18 @@ img {
   					<input type="text" name="recipeinput" placeholder="Search here..." required>
 	  				<button type="submit">Search</button>
 				</div>
-				
-		<ul class="nav navbar-nav navbar-right">
+				</ul>
 	
-			<p><li><a href="http://localhost:8080/myapp/logout"><span class="glyphicon glyphicon-log-in"></span>
-					Logout</a></li></p>	
+	<ul class="nav navbar-nav navbar-right">
+		<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
+		Logout</a></li></p>	
+		
+		<p><li><a href="http://localhost:8080/myapp/preferences"><span class="glyphicon glyphicon-log-in"></span>
+		Edit Preferences</a></li></</p>
 		</ul>
+		
+		
 
-		</ul>
 	</div>
 	</div>
 	</nav>
@@ -125,28 +129,7 @@ img {
 					type="radio" name="diet" value="Vegetarian"> Vegetarian<input
 					type="submit" value="Submit" style="visibility: hidden;">
 				<h4>
-					<Center>Cook Time</Center>
-				</h4>
-				<input type="range" name="cooktime" value="0" min="0" max="360"
-					onchange="showValue(this.value)" /> <span id="cooktime">0</span>
-				<script type="text/javascript">
-					function showValue(newValue) {
-						document.getElementById("cooktime").innerHTML = newValue;
-					}
-				</script>
-
-				<h4>
-					<Center>Calories:</Center>
-				</h4>
-				<input type="range" name="calories" value="0" min="0" max="3000"
-					onchange="calValue(this.value)" /> <span id="calories">0</span>
-				<script type="text/javascript">
-					function calValue(newValue) {
-						document.getElementById("calories").innerHTML = newValue;
-					}
-					</script>
-
-				
+			
 			</div>
 		
 			<div class="col-sm-8 text-left">
@@ -159,7 +142,35 @@ img {
 				<div class="container-fluid text-right">
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
-	
+			<!-- 	<div class="well">
+				
+
+			
+				</div>
+				<div class="well">
+					<p><li><a href="http://localhost:8080/myapp/preferences"><span class="glyphicon glyphicon-log-in"></span>
+					Edit Preferences</a></li></</p>
+				</div> -->
+			
+						
+					<h4><Center>Cook Time</Center></h4>
+				<input type="range" name="cooktime" value="0" min="0" max="90"onchange="showValue(this.value)"/>
+				<span id="cooktime">0</span>
+			<script type="text/javascript">
+			function showValue(newValue)
+			{
+			document.getElementById("cooktime").innerHTML=newValue;
+			}
+			</script>
+			    <h4><Center>Calories:</Center></h4>
+			<input type="range" name="calories" value="0" min="10" max="3000"onchange="calValue(this.value)"/>
+				<span id="calories">0</span>
+			<script type="text/javascript">
+			function calValue(newValue)
+			{
+			document.getElementById("calories").innerHTML=newValue;
+			}
+			</script>
 					<h4>
 						<Center>Carbs:</Center>
 					</h4>

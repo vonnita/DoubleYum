@@ -78,26 +78,8 @@
 <input type="radio" name="diet" value="Ovo"> Ovo Vegetarian<br>
 <input type="radio" name="diet" value="Vegan"> Vegan<br>
 <input type="radio" name="diet" value="Vegetarian"> Vegetarian<input type = "submit" value ="Submit"style="visibility: hidden;">
-  	<h4><Center>Cook Time</Center></h4>
-<input type="range" name="cooktime" value="0" min="0" max="360"onchange="showValue(this.value)"/>
-<span id="range">0</span>
-			<script type="text/javascript">
-			function showValue(newValue)
-			{
-			document.getElementById("cooktime").innerHTML=newValue;
-			}
-			</script>
-
-    <h4><Center>Calories:</Center></h4>
-<input type="range" name="calories" value="0" min="10" max="5000"onchange="calValue(this.value)"/>
-<span id="calories">0</span>
-			<script type="text/javascript">
-			function calValue(newValue)
-			{
-			document.getElementById("calories").innerHTML=newValue;
-			}
-			</script>
-       </form>	
+  
+      	
     </div>
     <div class="col-sm-8 text-left">
    	<h2>${counter} results for "${query}"</h2>
@@ -124,16 +106,29 @@
 				<div class="container-fluid text-right">
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li></p>	
-				</div>
-				<div class="well">
-					<p><li><a href=""><span class="glyphicon glyphicon-log-in"></span>
-					Sign up</a></li></</p>
-				</div>
+				
 				<p><h5>Let's get specific!</p></h5>
 					<h4>
+					
+					<h4><Center>Cook Time</Center></h4>
+				<input type="range" name="cooktime" value="0" min="0" max="90"onchange="showValue(this.value)"/>
+				<span id="cooktime">0</span>
+			<script type="text/javascript">
+			function showValue(newValue)
+			{
+			document.getElementById("cooktime").innerHTML=newValue;
+			}
+			</script>
+			    <h4><Center>Calories:</Center></h4>
+			<input type="range" name="calories" value="0" min="10" max="3000"onchange="calValue(this.value)"/>
+				<span id="calories">0</span>
+			<script type="text/javascript">
+			function calValue(newValue)
+			{
+			document.getElementById("calories").innerHTML=newValue;
+			}
+			</script>
+			
 						<Center>Carbs:</Center>
 					</h4>
 					<input type="range" name="carbs" value="0" min="0" max="500"
