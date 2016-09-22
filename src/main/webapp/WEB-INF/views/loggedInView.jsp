@@ -158,8 +158,10 @@ img {
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<div class="well">
-					<p><li><a href="http://localhost:8080/myapp/"><span class="glyphicon glyphicon-log-in"></span>
+				
+					<p><li><a href="http://localhost:8080/myapp/logout"><span class="glyphicon glyphicon-log-in"></span>
 					Logout</a></li></p>	
+			
 				</div>
 				<div class="well">
 					<p><li><a href="http://localhost:8080/myapp/preferences"><span class="glyphicon glyphicon-log-in"></span>

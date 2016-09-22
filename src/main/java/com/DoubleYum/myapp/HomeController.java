@@ -1,15 +1,13 @@
 package com.DoubleYum.myapp;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.slf4j.Logger;
@@ -38,7 +36,6 @@ public class HomeController {
 	 * 
 	 * 
 	 * 
-	
 	 */
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -75,7 +72,7 @@ public class HomeController {
 		try {
 			String searchQuery = request.getParameter("recipeinput");
 			String updatedQuery = searchQuery.replace(" ", "+");
-			
+
 			String diet = request.getParameter("diet");
 			String[] allergens = request.getParameterValues("allergens");
 			String apiStr1 = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?";
@@ -103,28 +100,28 @@ public class HomeController {
 					.header("X-Mashape-Key",
 							"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 					.header("Accept", "application/json").asJson();
-			
+
 			String cookTime = request.getParameter("cooktime");
-			if (cookTime.equals("0")){
+			if (cookTime.equals("0")) {
 				cookTime = "360";
 			}
 			String calories = request.getParameter("calories");
-			if (calories.equals("0")){
+			if (calories.equals("0")) {
 				calories = "3000";
 			}
 			String carbs = request.getParameter("carbs");
-			if (carbs.equals("0")){
+			if (carbs.equals("0")) {
 				carbs = "500";
 			}
 			String fat = request.getParameter("fat");
-			if (fat.equals("0")){
+			if (fat.equals("0")) {
 				fat = "1000";
 			}
 			String protein = request.getParameter("protein");
-			if (protein.equals("0")){
+			if (protein.equals("0")) {
 				protein = "100";
 			}
-			
+
 			int cookTimeDouble = Integer.parseInt(cookTime);
 			double caloriesDouble = Double.parseDouble(calories);
 			double carbsDouble = Double.parseDouble(carbs);
@@ -141,7 +138,7 @@ public class HomeController {
 
 			}
 			// loop thru ID numbers and send them to the new API
-			
+
 			ArrayList<Recipes> recipeInput = new ArrayList<Recipes>();
 			for (int i = 0; i < ids.size(); i++) {
 				//
@@ -152,7 +149,7 @@ public class HomeController {
 						.header("X-Mashape-Key",
 								"zuFk4e1CgfmshutJXXAPD9kAGPw6p191u4QjsnW3pJ4YnVGMqe")
 						.header("Accept", "application/json").asJson();
-				
+
 				Double recCal = (Double) response2.getBody().getObject()
 						.getJSONObject("nutrition").getJSONArray("nutrients")
 						.getJSONObject(0).get("amount");
@@ -165,16 +162,20 @@ public class HomeController {
 				Double recProtein = (Double) response2.getBody().getObject()
 						.getJSONObject("nutrition").getJSONArray("nutrients")
 						.getJSONObject(7).get("amount");
-			int recCookTime =
-					(Integer)response2.getBody().getObject().get("readyInMinutes");
+				int recCookTime = (Integer) response2.getBody().getObject()
+						.get("readyInMinutes");
 				//
 				if (recCal <= caloriesDouble && recFat <= fatDouble
 						&& recCarbs <= carbsDouble
-						&& recProtein <= proteinDouble && recCookTime <= cookTimeDouble) {
+						&& recProtein <= proteinDouble
+						&& recCookTime <= cookTimeDouble) {
 
-					recipeInput.add(new Recipes(updatedResponse.getJSONObject(i).get("title").toString(),updatedResponse.getJSONObject(i).get("image").toString(), response2.getBody().getObject().get("sourceUrl").toString()));
-				
-					
+					recipeInput.add(new Recipes(updatedResponse
+							.getJSONObject(i).get("title").toString(),
+							updatedResponse.getJSONObject(i).get("image")
+									.toString(), response2.getBody()
+									.getObject().get("sourceUrl").toString()));
+
 				}
 			}
 
@@ -182,17 +183,19 @@ public class HomeController {
 
 			String listImage = "";
 			String listTitle = "";
-			String listSourceUrl ="";
+			String listSourceUrl = "";
 
 			for (int i = 0; i < recipeInput.size(); i++) {
 
-				listImage += "<img src=\"https://spoonacular.com/recipeImages/" + recipeInput.get(i).getImage() + "\">";
+				listImage += "<img src=\"https://spoonacular.com/recipeImages/"
+						+ recipeInput.get(i).getImage() + "\">";
 				listTitle += "<br>" + recipeInput.get(i).getTitle();
-				//listSou += "<br>" + "<a href=\"http://" + recipeInput.get(i).getimageUrlsl() + "\">";
+				// listSou += "<br>" + "<a href=\"http://" +
+				// recipeInput.get(i).getimageUrlsl() + "\">";
 
 			}
 			model.addAttribute("recipeInput", recipeInput);
-			//model.addAttribute("sourceUrl", listSourceUrl);
+			// model.addAttribute("sourceUrl", listSourceUrl);
 			model.addAttribute("image", listImage);
 			model.addAttribute("recipeTitle", listTitle);
 			model.addAttribute("counter", recipeInput.size());
@@ -213,36 +216,73 @@ public class HomeController {
 	public String userLogin() {
 		return "login";
 	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String userLogout(HttpSession session) {
+		session.setAttribute("username", null);
+		return "HomePage";
+	}
+
 	@RequestMapping(value = "loggedInView", method = RequestMethod.GET)
 	public String loggedIn() {
 		return "loggedInView";
 	}
 
-	@RequestMapping(value = "formuserlogin", method = RequestMethod.GET)
+	@RequestMapping(value = "formuserlogin", method = RequestMethod.POST)
 	public String userLogin(HttpServletRequest request, Model model,
-			Object Allergies) {
+			Object Allergies, HttpSession session) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection cnn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
+			Connection cnn = DriverManager
+					.getConnection(
+							);
 
 			String fname = request.getParameter("name");
 			String lname = request.getParameter("lname");
 			String email = request.getParameter("email");
 			String uname = request.getParameter("uname");
-			String pswd = request.getParameter("pswd");
+			String pswd = request.getParameter("password");
+			
+			if (fname != null && !fname.isEmpty()) {
+				PreparedStatement preparedStatement = cnn
+						.prepareStatement("Insert into customer_info values(?,?,?,?,?)");
 
-			String insertCustInfoSQL = "";
+				preparedStatement.setString(1, fname);
+				preparedStatement.setString(2, lname);
+				preparedStatement.setString(3, email);
+				preparedStatement.setString(4, uname);
+				preparedStatement.setString(5, pswd);
 
-			insertCustInfoSQL = "Insert into customer_info values(' " + fname
-					+ "','" + lname + "','" + email + "','" + uname + "','"
-					+ pswd + "');";
+				preparedStatement.executeUpdate();
+				session.setAttribute("userID", uname);
+				return "loggedInView";
+			}else{
+			
+			ResultSet rs;
 
-			Statement insertStatement = cnn.createStatement();
-			insertStatement.executeUpdate(insertCustInfoSQL);
-	
-			model.addAttribute("username", uname);
+			
+				PreparedStatement p = cnn
+						.prepareStatement("Select count(*) from customer_info where username = ? and password=?");
+				p.setString(1, uname);
+				p.setString(2, pswd);
+				rs = p.executeQuery();
+				rs.next();
+				int res = rs.getInt(1);
+
+				if (res == 1) {
+					session.setAttribute("username", uname);
+					model.addAttribute("username", uname);
+					return "loggedInView";
+					
+				} else {
+					
+					return "login";
+				}
+
+		
+			
+			}
 		} catch (Exception e) {
 
 			System.out.println(e);
@@ -250,22 +290,22 @@ public class HomeController {
 			return "errorpage";
 
 		}
-		return "loggedInView";
 
-	}	
-	
+		//return "";
+	}
+
 	@RequestMapping(value = "formpage1", method = RequestMethod.GET)
 	public String listAllCustomers(HttpServletRequest request, Model model,
 			Object Allergies) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection cnn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/double_yum", "root", "zena09");
+			Connection cnn = DriverManager
+					.getConnection(
+							);
 
-		
 			String uname = request.getParameter("uname");
-		
+
 			String calories = request.getParameter("calories");
 			String cookTime = request.getParameter("cooktime");
 			String carbs = request.getParameter("carbs");
@@ -297,7 +337,7 @@ public class HomeController {
 			preparedStatement.executeUpdate();
 
 			model.addAttribute("ctable", "added new row");
-			
+
 		} catch (Exception e) {
 
 			System.out.println(e);
@@ -307,6 +347,6 @@ public class HomeController {
 		}
 		return "Preferences";
 
-	}	
+	}
 
 }

@@ -90,7 +90,7 @@ footer {
 
 
 		<h3> Food Preferences:</h3>
-
+${test}
 <div class="col-sm-8 text-left">
 		<h4><Center>Allergies</Center></h4>
 				<input type="checkbox" name="allergens" value="Dairy">Dairy<br>

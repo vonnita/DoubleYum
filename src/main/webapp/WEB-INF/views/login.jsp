@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form action="formuserlogin" method="get">
+<form action="formuserlogin" method="post">
 <div class="box">
       <h1 id="logintoregister">Login</h1>
     <div class="group">      
@@ -25,7 +25,7 @@
       <label>Username</label>
       </div>
 	  <div class="group">      
-      <input class="inputMaterial" type="password" required>
+      <input class="inputMaterial" name = "password" type="password" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Password</label>
@@ -55,11 +55,11 @@
       <label>Email</label>
       </div>
 
-<<<<<<< HEAD
+
   <button id="buttonlogintoregister" type = "submit">Login</button>
-=======
-  <button id="buttonlogintoregister">Login</button> 
->>>>>>> 9d8db4cd9e5a8086a3a1fb407fc2514fd09a4940
+
+<!--  <button id="buttonlogintoregister">Login</button>  -->
+
       <p id="plugintoregister">Not Registered? </p><p id="textchange" onclick="register()"> Sign up!</p>
     
     </div>
