@@ -20,6 +20,8 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="resources/main.css">
+<link rel="stylesheet" href="resources/search.css">
+
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -77,15 +79,14 @@ img {
 						Welcome, ${username}
 						</center>
 					</h3>
-					<h3>
-						Search<input type="text" name="recipeinput">
-						</center>
-					</h3>
-					<h3>
-						<input type="submit" value="Search!"> <!-- style="visibility: hidden;" --> 
-					</h3>
-				</ul>
-		</div>
+				<form action="recipeDetails" method="get">
+				<ul class="nav navbar-nav">
+					<div class="form-wrapper cf">
+  					<input type="text" name="recipeinput" placeholder="Search here..." required>
+	  				<button type="submit">Search</button>
+				</div>
+					
+				
 		<ul class="nav navbar-nav navbar-right">
 		
 

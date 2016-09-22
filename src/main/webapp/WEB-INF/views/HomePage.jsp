@@ -20,12 +20,15 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="resources/main.css">
+<link rel="stylesheet" href="resources/search.css">
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
 	background-color: #ec407a;
+	height: 100px;
+	
 }
 
 .navbar-brand {
@@ -56,10 +59,12 @@ img {
 	height: 350px;
 }
 /*if time, automatically adjust for mobile screens*/
-}
+    
+
 </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -70,18 +75,21 @@ img {
 			</button>
 			<a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a>
 			</h2>
-
+<br>
+<br>
 			<form action="recipeDetails" method="get">
 				<ul class="nav navbar-nav">
-					<h3>
-						Search<input type="text" name="recipeinput">
-						</center>
-					</h3>
-					<h3>
-						<input type="submit" value="Search!"> <!-- style="visibility: hidden;" --> 
+					<div class="form-wrapper cf">
+  					<input type="text" name="recipeinput" placeholder="Search here..." required>
+	  				<button type="submit">Search</button>
+				</div>
+				
+					
+				
 					</h3>
 				</ul>
 		</div>
+		
 		<ul class="nav navbar-nav navbar-right">
 		
 
@@ -205,7 +213,7 @@ ${recipeTitle2}
 	<img src=${recipePic}>
  --%>
 	</div>
-
+</div>
 
 
 	<footer class="container-fluid text-center">

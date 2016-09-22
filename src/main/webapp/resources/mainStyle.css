@@ -6,6 +6,7 @@
       margin-bottom: 0;
       border-radius: 0;
       background-color: #ec407a;
+      height: 100px;
       
     }
     .navbar-brand {
@@ -15,7 +16,6 @@
     	
     }
     
-    }
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 750px}
     
@@ -35,16 +35,45 @@
     }
     /* Add image styling and spacing */
     .container{
-    width: 200px;
-    height: 120px;
+
+    display: inline-block;
+    width: 400px;
+    height: 250px;
     margin: 20px;
 }
 .container img {
+	border-radius: 25px;
+	display: inline-block;
     width: 100%;
     height: auto;
     display: flex;
     justify-content:space-between;
 	margin: 20px;
 }
+.col-sm-8 text-left{
+	width: 100%;
+    float: left; 
+    width: 33.33%;
+}
+
+#aboutimgleft img {
+    margin-left: 20px;
+}
+
+#aboutimgcenter {
+    text-align: center;
+    text-style: italic;
+    font-size: 20px;
+}
+
+#aboutimgright {
+    text-align: right;
+}
+
+#aboutimgright img {
+    margin-right: 20px;
+	
+}
+
 
     }

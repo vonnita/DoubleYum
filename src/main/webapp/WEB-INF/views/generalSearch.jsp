@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/mainStyle.css">
-
+<link rel="stylesheet" href="resources/search.css">
  
 </head>
 <body>
@@ -34,13 +34,19 @@
       </button>
       <a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a></h2>
    	
-      <form action="homepage" method="get">
-     <ul class="nav navbar-nav"> 
-		<h3>Search<input type="text" name="recipeinput"></center></h3> 
-		<h3><input type="submit" value="Search!"></h3>	
-      </ul> 
-      
-      </div>
+    <br>
+<br>
+			<form action="recipeDetails" method="get">
+				<ul class="nav navbar-nav">
+					<div class="form-wrapper cf">
+  					<input type="text" name="recipeinput" placeholder="Search here..." required>
+	  				<button type="submit">Search</button>
+				</div>
+					
+				
+					</h3>
+				</ul>
+		</div>
       <ul class="nav navbar-nav navbar-right">
       
       </ul>
@@ -92,21 +98,25 @@
     </div>
     <div class="col-sm-8 text-left">
    	<h2>${counter} results for "${query}"</h2>
-   <%-- 	<h3>${nutrients}</h3> --%>
-   	
-<%--    <h3> ${recipeTitle}</h3>
-    --%>
- <div class="container">  
-   <c:forEach var="recipe" items = "${recipeInput}">
- 
+
+ <div class="container" id="aboutimgcenter">
+ <div class = class="img-responsive">
+ <c:forEach var="recipe" items = "${recipeInput}">
  <c:out value="${recipe.title}"/>
-  <a href ="${recipe.sourceUrl}"<button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}"></button></a>
+  <a href ="${recipe.sourceUrl}"<button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}" ></button></a>
+
+  </c:forEach>
+
  <p>
-</c:forEach>
+
+ <%--  <c:if test="${(recipeInput.length-1) mod 3 eq 0}"> --%>
+<%--  </c:if> --%>
+
 
   
  	</div>
  	<hr>
+ 	</div>
 			</div>
 				<div class="container-fluid text-right">
 			<div class="row content">
