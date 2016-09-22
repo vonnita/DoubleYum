@@ -91,9 +91,9 @@ img {
 		</div>
 		
 		<ul class="nav navbar-nav navbar-right">
-		
-
-
+	
+					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li></p>	
 		</ul>
 	</div>
 	</div>
@@ -161,14 +161,7 @@ img {
 				<div class="container-fluid text-right">
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li></p>	
-				</div>
-				<div class="well">
-					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
-					Sign up</a></li></</p>
-				</div>
+				
 				<p><h5>Let's get specific!</p></h5>
 					<h4>
 						<Center>Carbs:</Center>

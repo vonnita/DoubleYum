@@ -85,11 +85,12 @@ img {
   					<input type="text" name="recipeinput" placeholder="Search here..." required>
 	  				<button type="submit">Search</button>
 				</div>
-					
 				
 		<ul class="nav navbar-nav navbar-right">
-		
-
+	
+			<p><li><a href="http://localhost:8080/myapp/logout"><span class="glyphicon glyphicon-log-in"></span>
+					Logout</a></li></p>	
+		</ul>
 
 		</ul>
 	</div>
@@ -158,17 +159,7 @@ img {
 				<div class="container-fluid text-right">
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-				
-					<p><li><a href="http://localhost:8080/myapp/logout"><span class="glyphicon glyphicon-log-in"></span>
-					Logout</a></li></p>	
-			
-				</div>
-				<div class="well">
-					<p><li><a href="http://localhost:8080/myapp/preferences"><span class="glyphicon glyphicon-log-in"></span>
-					Edit Preferences</a></li></</p>
-				</div>
-			
+	
 					<h4>
 						<Center>Carbs:</Center>
 					</h4>

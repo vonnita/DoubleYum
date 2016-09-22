@@ -48,7 +48,10 @@
 				</ul>
 		</div>
       <ul class="nav navbar-nav navbar-right">
-      
+	
+					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li></p>	
+		</ul>
       </ul>
     </div>
   </div>
