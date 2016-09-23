@@ -88,7 +88,7 @@
  <div class = class="img-responsive">
  <c:forEach var="recipe" items = "${recipeInput}">
  <c:out value="${recipe.title}"/>
-  <a href ="${recipe.sourceUrl}"<button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}" ></button></a>
+  <a href ="${recipe.sourceUrl}"><button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}" ></button></a>
 
   </c:forEach>
 
