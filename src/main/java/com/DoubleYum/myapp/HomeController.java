@@ -38,7 +38,7 @@ public class HomeController {
 	 * 
 	 */
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"home","/"}, method = RequestMethod.GET)
 	public String getWeather(HttpServletRequest request, Model model) {
 		try {
 
@@ -235,8 +235,7 @@ public class HomeController {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection cnn = DriverManager
-					.getConnection(
-							);
+					.getConnection();
 
 			String fname = request.getParameter("name");
 			String lname = request.getParameter("lname");
@@ -256,12 +255,12 @@ public class HomeController {
 
 				preparedStatement.executeUpdate();
 				session.setAttribute("userID", uname);
+				model.addAttribute("username", uname);
+				fname = null;
 				return "loggedInView";
 			}else{
 			
 			ResultSet rs;
-
-			
 				PreparedStatement p = cnn
 						.prepareStatement("Select count(*) from customer_info where username = ? and password=?");
 				p.setString(1, uname);
@@ -269,19 +268,19 @@ public class HomeController {
 				rs = p.executeQuery();
 				rs.next();
 				int res = rs.getInt(1);
-
+				
 				if (res == 1) {
 					session.setAttribute("username", uname);
 					model.addAttribute("username", uname);
 					return "loggedInView";
 					
 				} else {
-					
+					System.out.println(res);
+					System.out.println(uname);
+					System.out.println(pswd);
 					return "login";
 				}
 
-		
-			
 			}
 		} catch (Exception e) {
 
@@ -301,8 +300,7 @@ public class HomeController {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection cnn = DriverManager
-					.getConnection(
-							);
+					.getConnection();
 
 			String uname = request.getParameter("uname");
 

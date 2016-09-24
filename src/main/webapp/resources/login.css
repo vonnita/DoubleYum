@@ -5,12 +5,19 @@
 html{
   background-color: #666;
   font-family: "Roboto";
-  
+
+  background: url(http://www.agmrc.org/media/cms/Watermelons_0F88A4E7D8BB4.jpg) no-repeat center center fixed; 
+  webkit-background-size: cover;
+  moz-background-size: cover;
+  o-background-size: cover;
+  background-size: cover;
+}
 }
 body {
 	opacity: 0.75;
-	background: url(http://learningherbs.com/wp-content/uploads/2014/11/IMAGE-21.jpg);
-	
+	background: url(http://levitatingmonkey.com/wp-content/uploads/2015/05/grapefruit.jpg);
+	width: 100%;
+	height: 100%
 }
 
 /* BOX LOGIN */

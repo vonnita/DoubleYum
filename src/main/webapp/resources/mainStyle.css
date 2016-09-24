@@ -23,7 +23,9 @@
     .sidenav {
       padding-top: 20px;
       background-color: #ffcdd2;
-      height: 100%;
+      height: 100%;	
+	  font-size: 17px;
+}
     }
   
     
@@ -36,7 +38,7 @@
     /* Add image styling and spacing */
     .container{
 
-    display: inline-block;
+    
     width: 400px;
     height: 250px;
     margin: 20px;
@@ -64,6 +66,7 @@
     text-align: center;
     text-style: italic;
     font-size: 20px;
+    margin-left: 100px;
 }
 
 #aboutimgright {
@@ -74,6 +77,5 @@
     margin-right: 20px;
 	
 }
-
-
+	
     }

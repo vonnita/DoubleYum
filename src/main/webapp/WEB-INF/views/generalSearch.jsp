@@ -16,11 +16,10 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>DoubleYum</title>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/mainStyle.css">
-<link rel="stylesheet" href="resources/search.css">
  
 </head>
 <body>
@@ -32,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://localhost:8080/myapp/">DoubleYum</a></h2>
+      <a class="navbar-brand" href="home">DoubleYum</a></h2>
    	
     <br>
 <br>
@@ -49,8 +48,7 @@
 		</div>
       <ul class="nav navbar-nav navbar-right">
 	
-					<p><li><a href="http://localhost:8080/myapp/login"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li></p>	
+					
 		</ul>
       </ul>
     </div>
@@ -79,16 +77,36 @@
 <input type="radio" name="diet" value="Vegan"> Vegan<br>
 <input type="radio" name="diet" value="Vegetarian"> Vegetarian<input type = "submit" value ="Submit"style="visibility: hidden;">
   
+					<h4><Center>Cook Time</Center></h4>
+				<input type="range" name="cooktime" value="0" min="0" max="120"onchange="showValue(this.value)"/>
+				<span id="cooktime">0</span>  Minutes
+			<script type="text/javascript">
+			function showValue(newValue)
+			{
+			document.getElementById("cooktime").innerHTML=newValue;
+			}
+			</script>
+			    <h4><Center>Calories:</Center></h4>
+			<input type="range" name="calories" value="0" min="10" max="3000"onchange="calValue(this.value)"/>
+				<span id="calories">0</span>  Calories
+			<script type="text/javascript">
+			function calValue(newValue)
+			{
+			document.getElementById("calories").innerHTML=newValue;
+			}
+			</script>
+			
       	
     </div>
-    <div class="col-sm-8 text-left">
+    <div class="col-sm-8 text-center">
    	<h2>${counter} results for "${query}"</h2>
 
  <div class="container" id="aboutimgcenter">
  <div class = class="img-responsive">
  <c:forEach var="recipe" items = "${recipeInput}">
  <c:out value="${recipe.title}"/>
-  <a href ="${recipe.sourceUrl}"><button type="button"><img src="https://spoonacular.com/recipeImages/${recipe.image}" ></button></a>
+  <center><a href ="${recipe.sourceUrl}"<button type="button">
+  <img src="https://spoonacular.com/recipeImages/${recipe.image}" ></button></a></center>
 
   </c:forEach>
 
@@ -103,36 +121,18 @@
  	<hr>
  	</div>
 			</div>
-				<div class="container-fluid text-right">
+				<div class="container-fluid text-left">
 			<div class="row content">
 			<div class="col-sm-2 sidenav">
-				
+				<h4><p><a href="login"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></p></h4>	
 				<p><h5>Let's get specific!</p></h5>
 					<h4>
 					
-					<h4><Center>Cook Time</Center></h4>
-				<input type="range" name="cooktime" value="0" min="0" max="90"onchange="showValue(this.value)"/>
-				<span id="cooktime">0</span>
-			<script type="text/javascript">
-			function showValue(newValue)
-			{
-			document.getElementById("cooktime").innerHTML=newValue;
-			}
-			</script>
-			    <h4><Center>Calories:</Center></h4>
-			<input type="range" name="calories" value="0" min="10" max="3000"onchange="calValue(this.value)"/>
-				<span id="calories">0</span>
-			<script type="text/javascript">
-			function calValue(newValue)
-			{
-			document.getElementById("calories").innerHTML=newValue;
-			}
-			</script>
-			
 						<Center>Carbs:</Center>
 					</h4>
-					<input type="range" name="carbs" value="0" min="0" max="500"
-						onchange="carbValue(this.value)" /> <span id="carbs">0</span>
+					<input type="range" name="carbs" value="0" min="0" max="250"
+						onchange="carbValue(this.value)" /> <span id="carbs">0</span> Grams
 					<script type="text/javascript">
 						function carbValue(newValue) {
 							document.getElementById("carbs").innerHTML = newValue;
@@ -141,8 +141,8 @@
 					<h4>
 						<Center>Fat:</Center>
 					</h4>
-					<input type="range" name="fat" value="0" min="0" max="1000"
-						onchange="fatValue(this.value)" /> <span id="fat">0</span>
+					<input type="range" name="fat" value="0" min="0" max="110"
+						onchange="fatValue(this.value)"/><span id="fat">0</span>  Grams
 					<script type="text/javascript">
 						function fatValue(newValue) {
 							document.getElementById("fat").innerHTML = newValue;
@@ -151,12 +151,13 @@
 					<h4>
 						<Center>Protein:</Center>
 					</h4>
-					<input type="range" name="protein" value="0" min="0" max="100"
-						onchange="proteinValue(this.value)" /> <span id="protein">0</span>
+					<input type="range" name="protein" value="0" min="0" max="150"
+						onchange="proteinValue(this.value)" /> <span id="protein">0</span>  Grams
 					<script type="text/javascript">
 						function proteinValue(newValue) {
 							document.getElementById("protein").innerHTML = newValue;
 						}
+						
 					</script>
 				</form>
 			</div>
